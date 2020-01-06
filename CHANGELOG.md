@@ -11,3 +11,7 @@ Keep a Changelog, and this project adheres to semantic versioning.
   event list or the correlated timeline to a file instead of stdout, so a
   review can keep the evidence snapshot next to the draft.
 
+## [0.6.0] - 2026-09-02
+
+### Added
+
