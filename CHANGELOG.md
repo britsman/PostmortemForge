@@ -27,3 +27,7 @@ Keep a Changelog, and this project adheres to semantic versioning.
 
 ## [0.5.0] - 2025-11-18
 
+### Added
+
+- Windowed correlation between deploys, metric breach intervals, and log
+  error bursts (`correlate.py`), plus rollback-to-recovery detection that
