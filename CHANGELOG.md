@@ -47,3 +47,7 @@ Keep a Changelog, and this project adheres to semantic versioning.
 ### Added
 
 - Clock alignment against a declared reference clock (`clockalign.py`): per
+  source offset plus linear skew anchored at a chosen instant.
+- `ingest` subcommand that lists every aligned event with its source span.
+
+### Fixed
