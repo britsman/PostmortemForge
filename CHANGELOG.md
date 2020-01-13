@@ -51,3 +51,7 @@ Keep a Changelog, and this project adheres to semantic versioning.
 - `ingest` subcommand that lists every aligned event with its source span.
 
 ### Fixed
+
+- Events on the exact boundary of an alignment window are no longer dropped
+  when the skew model anchors at the window end.
+
