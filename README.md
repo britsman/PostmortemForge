@@ -48,3 +48,11 @@ seconds behind the reference clock, and the metric exporter runs 90 seconds ahea
 drifts fast. On the raw exports, the first metric sample is stamped `08:01:30` and the
 service start log is stamped `07:59:20`, so a naive merge orders them almost two minutes
 apart from where they truly sit. Once aligned, the service start lands at `08:00:05`
+and the first metric sample at `08:00:00`, and the story reads in the order it happened.
+
+PostmortemForge takes the position that a postmortem is only as trustworthy as its
+evidence, and makes that trust structural rather than aspirational. Every sentence in a
+draft ends with a citation like `[samples/metric.txt:7]`, and any assertion that lacks a
+grounding event never reaches the page. You can click through from any claim to the
+line of the export it came from.
+
