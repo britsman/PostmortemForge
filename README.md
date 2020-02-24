@@ -56,3 +56,11 @@ draft ends with a citation like `[samples/metric.txt:7]`, and any assertion that
 grounding event never reaches the page. You can click through from any claim to the
 line of the export it came from.
 
+## Install
+
+No third party dependencies. Python 3.11 or newer.
+
+```
+pip install -e .
+```
+
