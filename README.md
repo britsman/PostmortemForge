@@ -64,3 +64,11 @@ No third party dependencies. Python 3.11 or newer.
 pip install -e .
 ```
 
+You can also run it straight from the source tree without installing:
+
+```
+set PYTHONPATH=src
+python -m postmortemforge version
+```
+
+That prints:
