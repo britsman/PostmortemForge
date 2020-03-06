@@ -72,3 +72,11 @@ python -m postmortemforge version
 ```
 
 That prints:
+
+```
+$ python -m postmortemforge version
+postmortemforge 0.1.0
+```
+
+## Commands
+
