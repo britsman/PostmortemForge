@@ -88,3 +88,11 @@ Four subcommands, all reading the same three sources plus an alignment config.
 | `timeline` | Build the correlated timeline: events plus the causal links found   | 1 if any links   |
 | `timeline --svg <path>` | Write the same aligned timeline as an SVG instead of text | 1 if any links |
 | `draft`    | Write the cited postmortem draft, one grounded claim per line       | 1 if any links   |
+| `version`  | Print the version                                                   | always 0         |
+
+`ingest`, `timeline`, and `draft` all take four required paths: `--logs`, `--metric`,
+`--deploy`, and `--align`. `timeline` and `draft` also accept `--window <seconds>` for
+the correlation window (default 300). Only `timeline` accepts `--svg <path>`.
+
+## The three source kinds and their formats
+
