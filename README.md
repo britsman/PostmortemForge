@@ -96,3 +96,11 @@ the correlation window (default 300). Only `timeline` accepts `--svg <path>`.
 
 ## The three source kinds and their formats
 
+Each source keeps time on its own clock and is read verbatim, with location. The reader
+records what the file says; it does not correct or infer anything at read time.
+
+| Kind     | Line format                                        | Header                                                              |
+| -------- | -------------------------------------------------- | ------------------------------------------------------------------- |
+| `logs`   | `<iso8601> <LEVEL> <message>`                      | none                                                                |
+| `metric` | `<iso8601> <value>`                                | `# metric <name> unit=<u> threshold=<t> direction=<above\|below>`   |
+| `deploy` | `<iso8601> <deploy\|rollback> ref=<ref>`           | none                                                                |
