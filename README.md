@@ -104,3 +104,10 @@ records what the file says; it does not correct or infer anything at read time.
 | `logs`   | `<iso8601> <LEVEL> <message>`                      | none                                                                |
 | `metric` | `<iso8601> <value>`                                | `# metric <name> unit=<u> threshold=<t> direction=<above\|below>`   |
 | `deploy` | `<iso8601> <deploy\|rollback> ref=<ref>`           | none                                                                |
+
+Rules that hold across all three:
+
+- Timestamps must be ISO8601 UTC, with a trailing `Z` or an explicit `+00:00`. Anything
+  else is rejected with a `SourceError` rather than guessed.
+- Blank lines and lines starting with `#` are skipped (the metric header is the one `#`
+  line that carries meaning).
