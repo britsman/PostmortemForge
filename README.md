@@ -111,3 +111,11 @@ Rules that hold across all three:
   else is rejected with a `SourceError` rather than guessed.
 - Blank lines and lines starting with `#` are skipped (the metric header is the one `#`
   line that carries meaning).
+- Every event records its provenance: the source path and a 1-based inclusive line span,
+  rendered as `path:line` or `path:start-end`.
+
+The metric reader models a single scalar series with one threshold and one direction. On
+each data point it records the value and whether it breached, so correlation can later
+find the breach window without re-reading the file.
+
+## Clock alignment
