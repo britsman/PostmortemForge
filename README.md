@@ -159,3 +159,11 @@ so the skew adds `0.02 * 300 = 6` seconds:
 ref = raw - 90 + 6 = 08:05:00 - 90 + 6 = 08:05:06Z
 ```
 
+That projected time, `2026-03-01T08:05:06Z`, is asserted exactly in the test and appears
+verbatim in the `ingest` output below for `samples/metric.txt:15`. At the anchor itself
+only the offset applies, so the first metric sample projects to `08:00:00Z`, and the log
+host's first line (raw `07:59:20`) projects to `08:00:05Z`.
+
+`ingest` reads all three sources and lists every event on the reference clock with its
+source span. This is the captured output from the sample fixtures:
+
