@@ -151,3 +151,11 @@ So in the sample the deploy record is the reference, the log host runs 45 second
 at 0.02 seconds per second, anchored at its first sample.
 
 The skew is not decorative. The test `TestSampleAlignment` projects a real metric sample
+to prove the accumulated drift. The metric anchor is its first sample at raw `08:01:30`.
+Line 15 of `metric.txt` is stamped raw `08:05:00`, which is 300 seconds after the anchor,
+so the skew adds `0.02 * 300 = 6` seconds:
+
+```
+ref = raw - 90 + 6 = 08:05:00 - 90 + 6 = 08:05:06Z
+```
+
