@@ -135,3 +135,11 @@ reference_ts = raw_ts + offset + skew * (raw_ts - anchor)
   reference. Anchoring keeps the correction numerically small and makes the offset the
   pure shift at the anchor instant. `anchor=first` anchors at the source's own earliest
   raw sample.
+
+The maps are declared, not inferred. PostmortemForge applies the offsets an operator
+provides (from NTP records, a known deploy marker, and so on); it does not estimate them
+from the data. The sample `align.txt` declares:
+
+```
+deploy offset=0 skew=0 anchor=first
+log offset=45 skew=0 anchor=first
