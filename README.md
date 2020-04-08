@@ -175,3 +175,11 @@ $ python -m postmortemforge ingest --logs samples/logs.txt --metric samples/metr
 2026-03-01T08:00:30Z  metric   samples/metric.txt:6  latency_p99_ms=235ms
 2026-03-01T08:01:01Z  metric   samples/metric.txt:7  latency_p99_ms=470ms
 2026-03-01T08:01:20Z  log      samples/logs.txt:5    config reloaded
+2026-03-01T08:01:31Z  metric   samples/metric.txt:8  latency_p99_ms=610ms
+2026-03-01T08:02:02Z  metric   samples/metric.txt:9  latency_p99_ms=655ms
+2026-03-01T08:02:05Z  log      samples/logs.txt:6    upstream latency rising pool=checkout
+2026-03-01T08:02:33Z  metric   samples/metric.txt:10  latency_p99_ms=640ms
+2026-03-01T08:02:35Z  log      samples/logs.txt:7    upstream timeout pool=checkout after=2000ms
+2026-03-01T08:02:50Z  log      samples/logs.txt:8    upstream timeout pool=checkout after=2000ms
+2026-03-01T08:03:03Z  metric   samples/metric.txt:11  latency_p99_ms=690ms
+2026-03-01T08:03:20Z  log      samples/logs.txt:9    circuit open pool=checkout
