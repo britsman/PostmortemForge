@@ -215,3 +215,11 @@ It detects three kinds of feature:
   least three errors in the run.
 
 From those it produces links, each carrying the two events it relates and the gap in
+seconds. A link is only emitted when both endpoints exist and the gap falls within the
+window (default 300 seconds). Anything outside the window is left uncorrelated rather
+than guessed.
+
+`timeline` builds the correlated timeline and prints events plus the links it found.
+Captured output, links section shown in full:
+
+```
