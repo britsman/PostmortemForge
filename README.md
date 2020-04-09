@@ -199,3 +199,11 @@ $ python -m postmortemforge ingest --logs samples/logs.txt --metric samples/metr
 2026-03-01T08:08:25Z  log      samples/logs.txt:15   request served status=200
 ```
 
+Note `samples/metric.txt:15` projecting to `08:05:06Z`, matching the skew calculation
+above.
+
+## Correlation windows and the links found in the sample
+
+With every event on one clock, correlation looks for the structural features of an
+incident and the links between them, using only time proximity within declared windows.
+It detects three kinds of feature:
