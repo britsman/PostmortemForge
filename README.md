@@ -191,3 +191,11 @@ $ python -m postmortemforge ingest --logs samples/logs.txt --metric samples/metr
 2026-03-01T08:05:06Z  metric   samples/metric.txt:15  latency_p99_ms=540ms
 2026-03-01T08:05:36Z  metric   samples/metric.txt:16  latency_p99_ms=470ms
 2026-03-01T08:06:00Z  deploy   samples/deploy.txt:4  rollback v2.4.0
+2026-03-01T08:06:00Z  log      samples/logs.txt:12   retries elevated pool=checkout
+2026-03-01T08:06:07Z  metric   samples/metric.txt:17  latency_p99_ms=250ms
+2026-03-01T08:06:37Z  metric   samples/metric.txt:18  latency_p99_ms=205ms
+2026-03-01T08:07:05Z  log      samples/logs.txt:13   rollback signal received target=v2.4.0
+2026-03-01T08:07:55Z  log      samples/logs.txt:14   circuit closed pool=checkout
+2026-03-01T08:08:25Z  log      samples/logs.txt:15   request served status=200
+```
+
