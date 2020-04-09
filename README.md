@@ -207,3 +207,11 @@ above.
 With every event on one clock, correlation looks for the structural features of an
 incident and the links between them, using only time proximity within declared windows.
 It detects three kinds of feature:
+
+- deploy actions, taken directly from the deploy source.
+- a metric breach interval: the first and last reference timestamps for which the metric
+  crossed its threshold, treating a gap longer than 120 seconds as ending one interval.
+- log error bursts: runs of ERROR level events no more than 60 seconds apart, with at
+  least three errors in the run.
+
+From those it produces links, each carrying the two events it relates and the gap in
