@@ -231,3 +231,11 @@ EVENTS
   ... (28 events in full; middle elided here only for length)
   T+   8.4m  log      samples/logs.txt:15   request served status=200
 LINKS
+  deploy_to_breach        T+0.0m -> T+1.0m  gap=61s  [samples/deploy.txt:3 -> samples/metric.txt:7]
+  deploy_to_burst         T+0.0m -> T+2.6m  gap=155s  [samples/deploy.txt:3 -> samples/logs.txt:7]
+  rollback_to_recovery    T+6.0m -> T+5.6m  gap=23s  [samples/deploy.txt:4 -> samples/metric.txt:16]
+```
+
+The three links, with the real gaps the tool measured:
+
+| Relation               | From                | To                   | Gap   | What it means                                                     |
