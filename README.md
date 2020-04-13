@@ -255,3 +255,10 @@ before the rollback still counts as the recovery it enabled.
 The draft writer emits only `Claim` objects, and a `Claim` cannot be constructed without
 at least one `Provenance`. The guarantee is enforced in the type's `__post_init__`:
 
+```python
+def __post_init__(self) -> None:
+    if not self.sources:
+        raise UngroundedStatement(f"claim has no source span: {self.text!r}")
+```
+
+Because the renderer only ever prints `Claim`s, and a `Claim` cannot exist without a
