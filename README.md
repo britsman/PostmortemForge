@@ -239,3 +239,11 @@ LINKS
 The three links, with the real gaps the tool measured:
 
 | Relation               | From                | To                   | Gap   | What it means                                                     |
+| ---------------------- | ------------------- | -------------------- | ----- | ----------------------------------------------------------------- |
+| `deploy_to_breach`     | deploy v2.4.1       | first breach sample  | 61s   | The metric crossed 400ms 61s after the deploy.                    |
+| `deploy_to_burst`      | deploy v2.4.1       | first ERROR log      | 155s  | The error burst began 155s after the deploy.                      |
+| `rollback_to_recovery` | rollback v2.4.0     | last breach sample   | 23s   | The metric dropped below threshold within 23s of the rollback.    |
+
+The `rollback_to_recovery` arrow points backward in minutes (`T+6.0m -> T+5.6m`) because
+the last breached sample is at T+5.6, just before the rollback at T+6.0; the gap is the
+absolute distance, 23 seconds. The correlator allows the recovery endpoint to fall
