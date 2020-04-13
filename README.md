@@ -223,3 +223,11 @@ than guessed.
 Captured output, links section shown in full:
 
 ```
+$ python -m postmortemforge timeline --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt
+EVENTS
+  T+   0.0m  deploy   samples/deploy.txt:3  deploy v2.4.1
+  T+   0.0m  metric   samples/metric.txt:5  latency_p99_ms=210ms
+  T+   0.1m  log      samples/logs.txt:4    service started build=v2.4.1
+  ... (28 events in full; middle elided here only for length)
+  T+   8.4m  log      samples/logs.txt:15   request served status=200
+LINKS
