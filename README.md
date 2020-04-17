@@ -262,3 +262,11 @@ def __post_init__(self) -> None:
 ```
 
 Because the renderer only ever prints `Claim`s, and a `Claim` cannot exist without a
+source span, no ungrounded sentence can reach the page. There is no code path that
+formats a bare string into the draft body. This is verified two ways in the tests:
+`test_claim_requires_a_source` asserts that building `Claim("...", tuple())` raises
+`UngroundedStatement`, and `test_every_rendered_claim_line_has_a_citation` asserts every
+`- ` line in a real rendered draft contains a `[path:line]` citation.
+
+What this guarantees about the draft: if a claim would require a fact the evidence does
+not contain, the writer omits it rather than hedging it. A section with no grounded
