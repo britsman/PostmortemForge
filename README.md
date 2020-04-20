@@ -270,3 +270,11 @@ formats a bare string into the draft body. This is verified two ways in the test
 
 What this guarantees about the draft: if a claim would require a fact the evidence does
 not contain, the writer omits it rather than hedging it. A section with no grounded
+claims renders the explicit note `(no statement could be grounded in a source span)`
+instead of narrative. You never read a sentence you cannot trace.
+
+## A worked run producing the draft
+
+`draft` writes the cited postmortem. This is the full captured output from the sample
+fixtures, verbatim:
+
