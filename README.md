@@ -278,3 +278,11 @@ instead of narrative. You never read a sentence you cannot trace.
 `draft` writes the cited postmortem. This is the full captured output from the sample
 fixtures, verbatim:
 
+```
+$ python -m postmortemforge draft --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt
+# Incident postmortem draft
+
+## Summary
+- A deploy of v2.4.1 occurred at T+0.0 min. [samples/deploy.txt:3]
+- A rollback to v2.4.0 occurred at T+6.0 min. [samples/deploy.txt:4]
+- latency_p99_ms stayed past its threshold of 400ms from T+1.0 to T+5.6 min. [samples/metric.txt:7, samples/metric.txt:16]
