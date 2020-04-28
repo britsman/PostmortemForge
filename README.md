@@ -302,3 +302,11 @@ $ python -m postmortemforge draft --logs samples/logs.txt --metric samples/metri
 ## Resolution
 - The rollback to v2.4.0 was associated with the metric returning below threshold within 23 s. [samples/deploy.txt:4, samples/metric.txt:16]
 ```
+
+The Timeline section prints one cited line for every one of the 28 events; the middle is
+elided above only to keep the README short. The full output is what the command prints.
+
+Follow one fact from input to draft. The Summary line `A burst of 5 error log lines ran
+from T+2.6 to T+4.4 min. [samples/logs.txt:7, samples/logs.txt:11]` traces back like
+this: `read_logs` parsed five lines with level `ERROR` (lines 7 to 11 of `logs.txt`),
+each carrying its own provenance. `clockalign` projected them 45 seconds forward onto
