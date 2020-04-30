@@ -310,3 +310,11 @@ Follow one fact from input to draft. The Summary line `A burst of 5 error log li
 from T+2.6 to T+4.4 min. [samples/logs.txt:7, samples/logs.txt:11]` traces back like
 this: `read_logs` parsed five lines with level `ERROR` (lines 7 to 11 of `logs.txt`),
 each carrying its own provenance. `clockalign` projected them 45 seconds forward onto
+the reference clock. `error_bursts` grouped them into one run of five because each was
+within 60 seconds of the last. `build_draft` bounded the burst by its first and last
+error and cited exactly those two spans. Nothing in that chain was invented; every step
+either read a file or applied the declared offset.
+
+## Reading the timeline asset
+
+The hero image at the top of this page is the `timeline --svg` render of the sample
