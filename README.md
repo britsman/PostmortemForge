@@ -350,3 +350,11 @@ grounded claim lines, and each claim line has this shape:
 ```
 
 | Section              | One line per                                  | Grounded in                                      |
+| -------------------- | --------------------------------------------- | ------------------------------------------------ |
+| `Summary`            | deploy, rollback, breach extent, burst extent | the deploy events and the bounding samples       |
+| `Timeline`           | every event (28 in the sample)                | that single event's provenance                   |
+| `Contributing cause` | each `deploy_to_breach` / `deploy_to_burst`   | both endpoints of the link                        |
+| `Resolution`         | each `rollback_to_recovery`                    | both endpoints of the link                        |
+
+A span is `path:line` for a single line, or `path:start-end` for a range. Multiple spans
+are comma separated inside one pair of brackets. The draft is line oriented so it diffs
