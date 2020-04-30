@@ -326,3 +326,11 @@ decoration. It shows:
 - The metric lane plots fourteen latency samples as a line from 210ms up to a labelled
   peak of 705ms and back down to 205ms.
 - Amber marks the incident itself: the v2.4.1 deploy dot, every latency sample at or
+  above the 470ms breach onset, and the five ERROR log events.
+- Teal marks healthy signal, with hollow teal rings for the WARN log lines and the
+  rollback.
+- Three dashed connectors trace the recorded correlations: deploy to first breach,
+  deploy to error burst start, and rollback to recovery.
+- A legend at the foot names each mark: INFO, WARN or rollback, and ERROR with latency
+  at or above the 470ms breach onset.
+
