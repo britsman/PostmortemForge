@@ -318,3 +318,11 @@ either read a file or applied the declared offset.
 ## Reading the timeline asset
 
 The hero image at the top of this page is the `timeline --svg` render of the sample
+incident. It is worth reading closely, because colour and size carry meaning rather than
+decoration. It shows:
+
+- Three lanes on a shared minute axis measured from the first event: deploy on top,
+  metric in the middle, logs at the foot.
+- The metric lane plots fourteen latency samples as a line from 210ms up to a labelled
+  peak of 705ms and back down to 205ms.
+- Amber marks the incident itself: the v2.4.1 deploy dot, every latency sample at or
