@@ -342,3 +342,11 @@ python -m postmortemforge timeline --logs samples/logs.txt --metric samples/metr
 
 ## Output format
 
+The `draft` output is a contract. Each section is a Markdown `##` heading followed by
+grounded claim lines, and each claim line has this shape:
+
+```
+- <statement text> [<span>, <span>, ...]
+```
+
+| Section              | One line per                                  | Grounded in                                      |
