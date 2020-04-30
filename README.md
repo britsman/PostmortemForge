@@ -334,3 +334,11 @@ decoration. It shows:
 - A legend at the foot names each mark: INFO, WARN or rollback, and ERROR with latency
   at or above the 470ms breach onset.
 
+Regenerate it at any time with:
+
+```
+python -m postmortemforge timeline --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt --svg docs/assets/incident-timeline.svg
+```
+
+## Output format
+
