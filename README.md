@@ -358,3 +358,11 @@ grounded claim lines, and each claim line has this shape:
 
 A span is `path:line` for a single line, or `path:start-end` for a range. Multiple spans
 are comma separated inside one pair of brackets. The draft is line oriented so it diffs
+cleanly, and deterministic so identical input produces byte identical output; that
+determinism is asserted by `test_draft_is_byte_identical_across_runs`.
+
+## Exit codes
+
+| Code | Meaning                                                                        |
+| ---- | ------------------------------------------------------------------------------ |
+| 0    | Clean: no findings (`ingest` with zero events, or `timeline`/`draft` with no links), or `version` |
