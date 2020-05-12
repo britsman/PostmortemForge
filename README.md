@@ -366,3 +366,11 @@ determinism is asserted by `test_draft_is_byte_identical_across_runs`.
 | Code | Meaning                                                                        |
 | ---- | ------------------------------------------------------------------------------ |
 | 0    | Clean: no findings (`ingest` with zero events, or `timeline`/`draft` with no links), or `version` |
+| 1    | Findings present: `ingest` produced events, or `timeline`/`draft` found links  |
+| 2    | Usage error: a bad path, an unparseable source, or an invalid argument         |
+
+In CI, treat exit 1 as "an incident was reconstructed" rather than as failure. A missing
+input file or a malformed timestamp surfaces as exit 2 with an `error:` line on stderr,
+which is the code to gate a pipeline on. The sample commands above all exit 1 because the
+sample incident has both events and links.
+
