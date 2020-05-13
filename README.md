@@ -374,3 +374,11 @@ input file or a malformed timestamp surfaces as exit 2 with an `error:` line on 
 which is the code to gate a pipeline on. The sample commands above all exit 1 because the
 sample incident has both events and links.
 
+## Limitations
+
+- Clock models are declared, not inferred. The tool applies the offset and skew you
+  provide; it does not estimate them from the data. A wrong offset produces a confidently
+  wrong timeline.
+- Correlation is proximity within a window, not proof of causation. A link means two
+  events fell close in aligned time, and the draft says exactly that ("was followed 61 s
+  later", "was associated with"). It does not claim one caused the other.
