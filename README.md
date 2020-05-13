@@ -382,3 +382,11 @@ sample incident has both events and links.
 - Correlation is proximity within a window, not proof of causation. A link means two
   events fell close in aligned time, and the draft says exactly that ("was followed 61 s
   later", "was associated with"). It does not claim one caused the other.
+- The tool drafts, it does not conclude. It surfaces every grounded link and orders the
+  evidence; a human decides which link mattered and writes the conclusion. There is no
+  ranking of causes.
+- Timestamps must be ISO8601 UTC, with a trailing `Z` or an explicit `+00:00`. Other
+  formats are rejected rather than guessed.
+- The metric reader models a single scalar series with one threshold. It does not handle
+  multiple series in one file or percentile families.
+
