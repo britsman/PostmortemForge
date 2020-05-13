@@ -390,3 +390,11 @@ sample incident has both events and links.
 - The metric reader models a single scalar series with one threshold. It does not handle
   multiple series in one file or percentile families.
 
+## Design decisions
+
+**Provenance is structural, not a convention.** The alternative was to append citations
+by convention: format each sentence, then tack a `[span]` on the end, trusting every code
+path to remember. Conventions rot. The first refactor that adds a summary line without a
+citation ships an ungrounded claim, and nothing catches it. Instead a `Claim` refuses to
+exist without a `Provenance`, so an ungrounded statement is a construction error, not a
+review comment. The cost is that every fact must be threaded with its source events
