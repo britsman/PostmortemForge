@@ -413,3 +413,11 @@ useful in a review than a complete one you have to fact check.
 shared marker, minimising cross correlation) is a real technique, but it hides an
 assumption inside a computation, and when it is wrong it is wrong invisibly. Declaring the
 offset in `align.txt` keeps the assumption in the open where a reviewer can challenge it,
+and makes the alignment a plain, auditable affine transform.
+
+## Repository layout
+
+```
+postmortemforge/
+  README.md                        this file
+  CHANGELOG.md                     Keep a Changelog history, currently 0.1.0
