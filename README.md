@@ -406,3 +406,10 @@ alternative is to write the narrative a human expects, softened with "likely" or
 "possibly" where the evidence is thin. That reads well and quietly destroys trust,
 because the reader cannot tell a hedged guess from a grounded fact. PostmortemForge draws
 the line at construction: if there is no source span, there is no sentence. A thin section
+says so plainly rather than papering over the gap. A shorter, fully grounded draft is more
+useful in a review than a complete one you have to fact check.
+
+**Clocks are declared, not inferred.** Inferring offsets from the data (aligning on a
+shared marker, minimising cross correlation) is a real technique, but it hides an
+assumption inside a computation, and when it is wrong it is wrong invisibly. Declaring the
+offset in `align.txt` keeps the assumption in the open where a reviewer can challenge it,
