@@ -429,3 +429,11 @@ postmortemforge/
       incident-timeline.svg        the hero timeline render (sample incident)
       logo.svg                     the three lane timeline logo mark
   samples/
+    README.md                      describes the sample incident and its clocks
+    logs.txt                       application log export, host 45s behind
+    metric.txt                     latency_p99_ms series, exporter 90s ahead with skew
+    deploy.txt                     deploy and rollback records, the reference clock
+    align.txt                      per source offset, skew, and anchor config
+  src/
+    postmortemforge/
+      __init__.py                  package version (0.1.0) and docstring
