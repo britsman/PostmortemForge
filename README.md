@@ -445,3 +445,11 @@ postmortemforge/
       timeline.py                  the ordered Timeline model in minutes from first event
       draft.py                     Claim, Draft, build_draft: grounded draft writer
       report.py                    text renderers for ingest and timeline, plus SVG
+  tests/
+    test_postmortemforge.py        22 tests across sources, alignment, correlation, draft, CLI
+```
+
+## Glossary
+
+| Term                | Meaning                                                                       |
+| ------------------- | ----------------------------------------------------------------------------- |
