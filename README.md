@@ -437,3 +437,11 @@ postmortemforge/
   src/
     postmortemforge/
       __init__.py                  package version (0.1.0) and docstring
+      __main__.py                  entry for `python -m postmortemforge`
+      cli.py                       argument parsing, config loading, subcommands
+      sources.py                   readers for logs, metric, deploy; Provenance, Event
+      clockalign.py                ClockModel, align, merge: offset and skew projection
+      correlate.py                 breach intervals, error bursts, link detection
+      timeline.py                  the ordered Timeline model in minutes from first event
+      draft.py                     Claim, Draft, build_draft: grounded draft writer
+      report.py                    text renderers for ingest and timeline, plus SVG
