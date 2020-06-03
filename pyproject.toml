@@ -13,3 +13,5 @@ authors = [{ name = "the PostmortemForge authors" }]
 keywords = ["incident", "postmortem", "timeline", "provenance"]
 
 [project.scripts]
+postmortemforge = "postmortemforge.cli:main"
+
