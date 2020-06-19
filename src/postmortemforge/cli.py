@@ -16,3 +16,9 @@ offset 0 and skew 0 already agrees with the reference.
 Exit codes: 0 clean, 1 findings present (a draft with correlated links or an
 ingest that produced events), 2 usage error.
 """
+
+from __future__ import annotations
+
+import argparse
+import sys
+
