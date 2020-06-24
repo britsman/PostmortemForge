@@ -33,3 +33,9 @@ USAGE_ERROR = 2
 FINDINGS = 1
 CLEAN = 0
 
+
+def _parse_align_config(text: str, path: str) -> dict[str, ClockModel]:
+    """Parse the alignment config into per-source clock models.
+
+    Lines: `<source> offset=<s> skew=<s_per_s> anchor=<iso8601|first>`.
+    anchor=first means anchor at the source's own earliest raw timestamp, filled
