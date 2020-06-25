@@ -45,3 +45,9 @@ def _parse_align_config(text: str, path: str) -> dict[str, ClockModel]:
     for line_no, line in enumerate(text.splitlines(), start=1):
         s = line.strip()
         if not s or s.startswith("#"):
+            continue
+        parts = s.split()
+        source = parts[0]
+        offset = 0.0
+        skew = 0.0
+        anchor_raw = "first"
