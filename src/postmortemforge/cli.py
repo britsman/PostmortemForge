@@ -57,3 +57,9 @@ def _parse_align_config(text: str, path: str) -> dict[str, ClockModel]:
             key, val = tok.split("=", 1)
             if key == "offset":
                 offset = float(val)
+            elif key == "skew":
+                skew = float(val)
+            elif key == "anchor":
+                anchor_raw = val
+            else:
+                raise S.SourceError(f"{path}:{line_no}: unknown field {key!r}")
