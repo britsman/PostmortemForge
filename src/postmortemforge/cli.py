@@ -39,3 +39,9 @@ def _parse_align_config(text: str, path: str) -> dict[str, ClockModel]:
 
     Lines: `<source> offset=<s> skew=<s_per_s> anchor=<iso8601|first>`.
     anchor=first means anchor at the source's own earliest raw timestamp, filled
+    in later once events are read.
+    """
+    models: dict[str, ClockModel] = {}
+    for line_no, line in enumerate(text.splitlines(), start=1):
+        s = line.strip()
+        if not s or s.startswith("#"):
