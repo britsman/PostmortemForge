@@ -69,3 +69,9 @@ def _parse_align_config(text: str, path: str) -> dict[str, ClockModel]:
         models[source] = ClockModel(
             source=source, offset_s=offset, skew_s_per_s=skew, anchor_ts=anchor_ts
         )
+        # Stash whether anchor was "first" so we can fill it after reading.
+        if anchor_raw == "first":
+            _ANCHOR_FIRST.add((path, source))
+    return models
+
+
