@@ -63,3 +63,9 @@ def _parse_align_config(text: str, path: str) -> dict[str, ClockModel]:
                 anchor_raw = val
             else:
                 raise S.SourceError(f"{path}:{line_no}: unknown field {key!r}")
+        anchor_ts = 0.0
+        if anchor_raw != "first":
+            anchor_ts = S._parse_ts(anchor_raw, path, line_no)
+        models[source] = ClockModel(
+            source=source, offset_s=offset, skew_s_per_s=skew, anchor_ts=anchor_ts
+        )
