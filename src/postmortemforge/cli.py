@@ -75,3 +75,9 @@ def _parse_align_config(text: str, path: str) -> dict[str, ClockModel]:
     return models
 
 
+_ANCHOR_FIRST: set[tuple[str, str]] = set()
+
+
+def _load(args) -> list:
+    """Read all three sources and project them onto the reference clock."""
+    align_text = S.read_file(args.align)
