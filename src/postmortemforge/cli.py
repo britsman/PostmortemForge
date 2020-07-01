@@ -87,3 +87,9 @@ def _load(args) -> list:
     log_events = S.read_logs(S.read_file(args.logs), args.logs)
     _, metric_events = S.read_metric(S.read_file(args.metric), args.metric)
     deploy_events = S.read_deploy(S.read_file(args.deploy), args.deploy)
+
+    groups = []
+    for source, events in (
+        ("log", log_events),
+        ("metric", metric_events),
+        ("deploy", deploy_events),
