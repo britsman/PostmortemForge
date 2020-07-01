@@ -81,3 +81,9 @@ _ANCHOR_FIRST: set[tuple[str, str]] = set()
 def _load(args) -> list:
     """Read all three sources and project them onto the reference clock."""
     align_text = S.read_file(args.align)
+    _ANCHOR_FIRST.clear()
+    models = _parse_align_config(align_text, args.align)
+
+    log_events = S.read_logs(S.read_file(args.logs), args.logs)
+    _, metric_events = S.read_metric(S.read_file(args.metric), args.metric)
+    deploy_events = S.read_deploy(S.read_file(args.deploy), args.deploy)
