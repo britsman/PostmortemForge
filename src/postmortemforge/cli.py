@@ -111,3 +111,9 @@ def _add_source_args(p: argparse.ArgumentParser) -> None:
 
 def _cmd_ingest(args) -> int:
     aligned = _load(args)
+    sys.stdout.write(render_ingest(aligned))
+    return FINDINGS if aligned else CLEAN
+
+
+def _cmd_timeline(args) -> int:
+    aligned = _load(args)
