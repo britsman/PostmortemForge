@@ -105,3 +105,9 @@ def _load(args) -> list:
 def _add_source_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--logs", required=True, help="path to the application log export")
     p.add_argument("--metric", required=True, help="path to the metric series export")
+    p.add_argument("--deploy", required=True, help="path to the deploy record export")
+    p.add_argument("--align", required=True, help="path to the clock alignment config")
+
+
+def _cmd_ingest(args) -> int:
+    aligned = _load(args)
