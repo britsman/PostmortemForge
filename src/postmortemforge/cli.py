@@ -99,3 +99,9 @@ def _load(args) -> list:
             earliest = min(e.raw_ts for e in events)
             model = with_anchor(model, earliest)
         groups.append(align(events, model))
+    return merge(*groups)
+
+
+def _add_source_args(p: argparse.ArgumentParser) -> None:
+    p.add_argument("--logs", required=True, help="path to the application log export")
+    p.add_argument("--metric", required=True, help="path to the metric series export")
