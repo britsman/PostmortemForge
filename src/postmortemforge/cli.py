@@ -117,3 +117,8 @@ def _cmd_ingest(args) -> int:
 
 def _cmd_timeline(args) -> int:
     aligned = _load(args)
+    tl = build(aligned, window_s=args.window)
+    if args.svg:
+        with open(args.svg, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(render_svg(tl))
+        sys.stdout.write(f"wrote {args.svg}\n")
