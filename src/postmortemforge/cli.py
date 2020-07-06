@@ -93,3 +93,9 @@ def _load(args) -> list:
         ("log", log_events),
         ("metric", metric_events),
         ("deploy", deploy_events),
+    ):
+        model = models.get(source, ClockModel(source=source))
+        if (args.align, source) in _ANCHOR_FIRST and events:
+            earliest = min(e.raw_ts for e in events)
+            model = with_anchor(model, earliest)
+        groups.append(align(events, model))
