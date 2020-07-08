@@ -122,3 +122,9 @@ def _cmd_timeline(args) -> int:
         with open(args.svg, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(render_svg(tl))
         sys.stdout.write(f"wrote {args.svg}\n")
+    else:
+        sys.stdout.write(render_timeline(tl))
+    return FINDINGS if tl.links else CLEAN
+
+
+def _cmd_draft(args) -> int:
