@@ -128,3 +128,9 @@ def _cmd_timeline(args) -> int:
 
 
 def _cmd_draft(args) -> int:
+    aligned = _load(args)
+    tl = build(aligned, window_s=args.window)
+    draft = build_draft(tl)
+    sys.stdout.write(draft.render())
+    return FINDINGS if tl.links else CLEAN
+
