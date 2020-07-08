@@ -140,3 +140,9 @@ def _cmd_version(args) -> int:
     return CLEAN
 
 
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="postmortemforge",
+        description="Reconstruct an incident timeline from exported evidence and draft a cited postmortem.",
+    )
+    sub = parser.add_subparsers(dest="command", required=True)
