@@ -146,3 +146,9 @@ def build_parser() -> argparse.ArgumentParser:
         description="Reconstruct an incident timeline from exported evidence and draft a cited postmortem.",
     )
     sub = parser.add_subparsers(dest="command", required=True)
+
+    p_ingest = sub.add_parser("ingest", help="list aligned events with source spans")
+    _add_source_args(p_ingest)
+    p_ingest.set_defaults(func=_cmd_ingest)
+
+    p_timeline = sub.add_parser("timeline", help="build the correlated timeline")
