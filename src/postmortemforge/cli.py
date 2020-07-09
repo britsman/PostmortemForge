@@ -152,3 +152,9 @@ def build_parser() -> argparse.ArgumentParser:
     p_ingest.set_defaults(func=_cmd_ingest)
 
     p_timeline = sub.add_parser("timeline", help="build the correlated timeline")
+    _add_source_args(p_timeline)
+    p_timeline.add_argument("--window", type=float, default=300.0, help="correlation window in seconds")
+    p_timeline.add_argument("--svg", help="write the timeline SVG to this path instead of text")
+    p_timeline.set_defaults(func=_cmd_timeline)
+
+    p_draft = sub.add_parser("draft", help="write the cited postmortem draft")
