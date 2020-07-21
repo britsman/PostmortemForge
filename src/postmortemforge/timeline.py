@@ -17,3 +17,6 @@ from .clockalign import AlignedEvent
 from .correlate import Burst, Interval, Link, breach_intervals, correlate, error_bursts
 
 
+@dataclass(frozen=True)
+class Timeline:
+    """The full incident model on the reference clock."""
