@@ -12,3 +12,5 @@ from __future__ import annotations
 
 import datetime as _dt
 from dataclasses import dataclass
+
+from .clockalign import AlignedEvent
