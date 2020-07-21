@@ -14,3 +14,6 @@ import datetime as _dt
 from dataclasses import dataclass
 
 from .clockalign import AlignedEvent
+from .correlate import Burst, Interval, Link, breach_intervals, correlate, error_bursts
+
+
