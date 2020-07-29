@@ -22,3 +22,6 @@ class Timeline:
     """The full incident model on the reference clock."""
 
     events: tuple[AlignedEvent, ...]
+    links: tuple[Link, ...]
+    intervals: tuple[Interval, ...]
+    bursts: tuple[Burst, ...]
