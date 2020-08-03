@@ -30,3 +30,6 @@ class Timeline:
     def origin_ts(self) -> float:
         """Reference timestamp of the first event: the zero of the minute axis."""
         return self.events[0].ref_ts
+
+    def minutes(self, ref_ts: float) -> float:
+        """Minutes elapsed from the first event to ref_ts."""
