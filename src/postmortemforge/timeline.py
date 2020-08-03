@@ -33,3 +33,6 @@ class Timeline:
 
     def minutes(self, ref_ts: float) -> float:
         """Minutes elapsed from the first event to ref_ts."""
+        return (ref_ts - self.origin_ts) / 60.0
+
+    def span_minutes(self) -> float:
