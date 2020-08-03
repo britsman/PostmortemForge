@@ -38,3 +38,6 @@ class Timeline:
     def span_minutes(self) -> float:
         """Total span of the timeline in minutes."""
         return self.minutes(self.events[-1].ref_ts)
+
+
+def build(events: list[AlignedEvent], window_s: float = 300.0) -> Timeline:
