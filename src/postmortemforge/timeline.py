@@ -28,3 +28,5 @@ class Timeline:
 
     @property
     def origin_ts(self) -> float:
+        """Reference timestamp of the first event: the zero of the minute axis."""
+        return self.events[0].ref_ts
