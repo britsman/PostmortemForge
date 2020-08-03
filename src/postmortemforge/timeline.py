@@ -36,3 +36,5 @@ class Timeline:
         return (ref_ts - self.origin_ts) / 60.0
 
     def span_minutes(self) -> float:
+        """Total span of the timeline in minutes."""
+        return self.minutes(self.events[-1].ref_ts)
