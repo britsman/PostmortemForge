@@ -25,3 +25,6 @@ class Timeline:
     links: tuple[Link, ...]
     intervals: tuple[Interval, ...]
     bursts: tuple[Burst, ...]
+
+    @property
+    def origin_ts(self) -> float:
