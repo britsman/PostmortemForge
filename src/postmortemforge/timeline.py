@@ -47,3 +47,5 @@ def build(events: list[AlignedEvent], window_s: float = 300.0) -> Timeline:
     """
     if not events:
         raise ValueError("cannot build a timeline from zero events")
+    ordered = sorted(events, key=lambda a: (a.ref_ts, a.source, a.event.prov.line_start))
+    return Timeline(
