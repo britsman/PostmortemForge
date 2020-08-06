@@ -44,3 +44,6 @@ def build(events: list[AlignedEvent], window_s: float = 300.0) -> Timeline:
     """Assemble a Timeline from aligned events.
 
     Runs breach, burst, and link detection once and freezes the result.
+    """
+    if not events:
+        raise ValueError("cannot build a timeline from zero events")
