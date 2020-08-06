@@ -49,3 +49,6 @@ def build(events: list[AlignedEvent], window_s: float = 300.0) -> Timeline:
         raise ValueError("cannot build a timeline from zero events")
     ordered = sorted(events, key=lambda a: (a.ref_ts, a.source, a.event.prov.line_start))
     return Timeline(
+        events=tuple(ordered),
+        links=tuple(correlate(ordered, window_s=window_s)),
+        intervals=tuple(breach_intervals(ordered)),
