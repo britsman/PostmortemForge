@@ -30,3 +30,10 @@ from dataclasses import dataclass, field
 from typing import Iterator
 
 
+class SourceError(ValueError):
+    """Raised when a source file cannot be parsed."""
+
+
+@dataclass(frozen=True)
+class Provenance:
+    """Where an event came from: a file and a 1-based inclusive line span."""
