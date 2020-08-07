@@ -22,3 +22,11 @@ Timestamps are parsed as naive UTC seconds since the Unix epoch. Clock
 alignment (offset and skew) is applied later by clockalign, not here. Reading
 is deliberately dumb: it records what the file says, verbatim, with location.
 """
+
+from __future__ import annotations
+
+import datetime as _dt
+from dataclasses import dataclass, field
+from typing import Iterator
+
+
