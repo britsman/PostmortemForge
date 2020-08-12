@@ -37,3 +37,11 @@ class SourceError(ValueError):
 @dataclass(frozen=True)
 class Provenance:
     """Where an event came from: a file and a 1-based inclusive line span."""
+
+    path: str
+    line_start: int
+    line_end: int
+
+    def span(self) -> str:
+        if self.line_start == self.line_end:
+            return f"{self.path}:{self.line_start}"
