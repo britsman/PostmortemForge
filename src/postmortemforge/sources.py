@@ -45,3 +45,10 @@ class Provenance:
     def span(self) -> str:
         if self.line_start == self.line_end:
             return f"{self.path}:{self.line_start}"
+        return f"{self.path}:{self.line_start}-{self.line_end}"
+
+
+@dataclass(frozen=True)
+class Event:
+    """A single observed event on one source's own clock.
+
