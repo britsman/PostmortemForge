@@ -52,3 +52,10 @@ class Provenance:
 class Event:
     """A single observed event on one source's own clock.
 
+    raw_ts is seconds since the Unix epoch as written in the file, before any
+    clock alignment. kind is one of log, metric, deploy. attrs holds parsed
+    fields specific to the kind. text is a short human label. prov records the
+    exact source location.
+    """
+
+    raw_ts: float
