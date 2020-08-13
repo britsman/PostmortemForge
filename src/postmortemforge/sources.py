@@ -59,3 +59,11 @@ class Event:
     """
 
     raw_ts: float
+    kind: str
+    text: str
+    attrs: dict = field(default_factory=dict)
+    prov: Provenance = None  # type: ignore[assignment]
+
+
+@dataclass(frozen=True)
+class MetricMeta:
