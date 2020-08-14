@@ -74,3 +74,11 @@ class MetricMeta:
     threshold: float
     direction: str  # above or below
 
+    def breached(self, value: float) -> bool:
+        if self.direction == "above":
+            return value > self.threshold
+        return value < self.threshold
+
+
+def _parse_ts(token: str, path: str, line_no: int) -> float:
+    """Parse an ISO8601 UTC timestamp to epoch seconds.
