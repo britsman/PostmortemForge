@@ -89,3 +89,11 @@ def _parse_ts(token: str, path: str, line_no: int) -> float:
     t = token
     if t.endswith("Z"):
         t = t[:-1] + "+00:00"
+    try:
+        dt = _dt.datetime.fromisoformat(t)
+    except ValueError as exc:
+        raise SourceError(f"{path}:{line_no}: bad timestamp {token!r}") from exc
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=_dt.timezone.utc)
+    return dt.timestamp()
+
