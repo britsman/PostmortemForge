@@ -97,3 +97,10 @@ def _parse_ts(token: str, path: str, line_no: int) -> float:
         dt = dt.replace(tzinfo=_dt.timezone.utc)
     return dt.timestamp()
 
+
+def _iter_lines(text: str) -> Iterator[tuple[int, str]]:
+    for i, line in enumerate(text.splitlines(), start=1):
+        yield i, line
+
+
+def read_logs(text: str, path: str) -> list[Event]:
