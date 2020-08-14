@@ -82,3 +82,10 @@ class MetricMeta:
 
 def _parse_ts(token: str, path: str, line_no: int) -> float:
     """Parse an ISO8601 UTC timestamp to epoch seconds.
+
+    Accepts a trailing Z or an explicit +00:00 offset. Rejects anything else so
+    a malformed export fails loudly rather than silently misaligning.
+    """
+    t = token
+    if t.endswith("Z"):
+        t = t[:-1] + "+00:00"
