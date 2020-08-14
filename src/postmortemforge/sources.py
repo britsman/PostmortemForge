@@ -67,3 +67,10 @@ class Event:
 
 @dataclass(frozen=True)
 class MetricMeta:
+    """Declared metadata for a metric series, parsed from its header line."""
+
+    name: str
+    unit: str
+    threshold: float
+    direction: str  # above or below
+
