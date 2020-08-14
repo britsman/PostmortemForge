@@ -104,3 +104,11 @@ def _iter_lines(text: str) -> Iterator[tuple[int, str]]:
 
 
 def read_logs(text: str, path: str) -> list[Event]:
+    """Parse application log lines into Event records.
+
+    Format per line: `<iso8601> <LEVEL> <message>`. Blank lines and lines
+    starting with # are skipped. The message is kept verbatim as the label.
+    """
+    events: list[Event] = []
+    for line_no, line in _iter_lines(text):
+        s = line.strip()
