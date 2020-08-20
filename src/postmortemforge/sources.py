@@ -127,3 +127,10 @@ def read_logs(text: str, path: str) -> list[Event]:
                 text=message or level,
                 attrs={"level": level, "message": message},
                 prov=Provenance(path, line_no, line_no),
+            )
+        )
+    return events
+
+
+def read_metric(text: str, path: str) -> tuple[MetricMeta, list[Event]]:
+    """Parse a metric series and its declared header.
