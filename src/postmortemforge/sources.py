@@ -134,3 +134,11 @@ def read_logs(text: str, path: str) -> list[Event]:
 
 def read_metric(text: str, path: str) -> tuple[MetricMeta, list[Event]]:
     """Parse a metric series and its declared header.
+
+    The header line, starting with `# metric`, declares name, unit, threshold,
+    and direction. Each subsequent data line is `<iso8601> <value>`. Every data
+    point becomes an Event; the attrs record the value and whether it breached
+    the declared threshold, so correlation can find the breach window.
+    """
+    meta: MetricMeta | None = None
+    events: list[Event] = []
