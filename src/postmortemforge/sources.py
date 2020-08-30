@@ -157,3 +157,10 @@ def read_metric(text: str, path: str) -> tuple[MetricMeta, list[Event]]:
             raise SourceError(f"{path}:{line_no}: metric line needs a timestamp and value")
         ts = _parse_ts(parts[0], path, line_no)
         try:
+            value = float(parts[1])
+        except ValueError as exc:
+            raise SourceError(f"{path}:{line_no}: bad metric value {parts[1]!r}") from exc
+        breached = meta.breached(value)
+        events.append(
+            Event(
+                raw_ts=ts,
