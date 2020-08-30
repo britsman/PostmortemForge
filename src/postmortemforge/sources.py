@@ -149,3 +149,11 @@ def read_metric(text: str, path: str) -> tuple[MetricMeta, list[Event]]:
         if s.startswith("#"):
             if s.startswith("# metric"):
                 meta = _parse_metric_header(s, path, line_no)
+            continue
+        if meta is None:
+            raise SourceError(f"{path}:{line_no}: metric data before header")
+        parts = s.split()
+        if len(parts) != 2:
+            raise SourceError(f"{path}:{line_no}: metric line needs a timestamp and value")
+        ts = _parse_ts(parts[0], path, line_no)
+        try:
