@@ -142,3 +142,10 @@ def read_metric(text: str, path: str) -> tuple[MetricMeta, list[Event]]:
     """
     meta: MetricMeta | None = None
     events: list[Event] = []
+    for line_no, line in _iter_lines(text):
+        s = line.strip()
+        if not s:
+            continue
+        if s.startswith("#"):
+            if s.startswith("# metric"):
+                meta = _parse_metric_header(s, path, line_no)
