@@ -179,3 +179,10 @@ def read_metric(text: str, path: str) -> tuple[MetricMeta, list[Event]]:
         )
     if meta is None:
         raise SourceError(f"{path}: no metric header line found")
+    return meta, events
+
+
+def _parse_metric_header(line: str, path: str, line_no: int) -> MetricMeta:
+    # Form: # metric <name> unit=<u> threshold=<t> direction=<above|below>
+    tokens = line.split()
+    if len(tokens) < 3:
