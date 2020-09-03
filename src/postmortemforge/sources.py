@@ -164,3 +164,11 @@ def read_metric(text: str, path: str) -> tuple[MetricMeta, list[Event]]:
         events.append(
             Event(
                 raw_ts=ts,
+                kind="metric",
+                text=f"{meta.name}={value:g}{meta.unit}",
+                attrs={
+                    "metric": meta.name,
+                    "value": value,
+                    "unit": meta.unit,
+                    "threshold": meta.threshold,
+                    "direction": meta.direction,
