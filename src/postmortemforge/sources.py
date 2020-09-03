@@ -172,3 +172,10 @@ def read_metric(text: str, path: str) -> tuple[MetricMeta, list[Event]]:
                     "unit": meta.unit,
                     "threshold": meta.threshold,
                     "direction": meta.direction,
+                    "breached": breached,
+                },
+                prov=Provenance(path, line_no, line_no),
+            )
+        )
+    if meta is None:
+        raise SourceError(f"{path}: no metric header line found")
