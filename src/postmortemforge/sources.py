@@ -186,3 +186,11 @@ def _parse_metric_header(line: str, path: str, line_no: int) -> MetricMeta:
     # Form: # metric <name> unit=<u> threshold=<t> direction=<above|below>
     tokens = line.split()
     if len(tokens) < 3:
+        raise SourceError(f"{path}:{line_no}: metric header needs a name")
+    name = tokens[2]
+    fields: dict[str, str] = {}
+    for tok in tokens[3:]:
+        if "=" not in tok:
+            raise SourceError(f"{path}:{line_no}: metric header field {tok!r} needs key=value")
+        key, val = tok.split("=", 1)
+        fields[key] = val
