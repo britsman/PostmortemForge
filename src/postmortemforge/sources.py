@@ -194,3 +194,10 @@ def _parse_metric_header(line: str, path: str, line_no: int) -> MetricMeta:
             raise SourceError(f"{path}:{line_no}: metric header field {tok!r} needs key=value")
         key, val = tok.split("=", 1)
         fields[key] = val
+    for required in ("unit", "threshold", "direction"):
+        if required not in fields:
+            raise SourceError(f"{path}:{line_no}: metric header missing {required}")
+    if fields["direction"] not in ("above", "below"):
+        raise SourceError(f"{path}:{line_no}: direction must be above or below")
+    try:
+        threshold = float(fields["threshold"])
