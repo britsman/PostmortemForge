@@ -209,3 +209,10 @@ def _parse_metric_header(line: str, path: str, line_no: int) -> MetricMeta:
 def read_deploy(text: str, path: str) -> list[Event]:
     """Parse a deploy record into Event records.
 
+    Format per line: `<iso8601> <action> ref=<ref>` where action is deploy or
+    rollback. The ref (a commit or version) is kept in attrs so the timeline can
+    name exactly what shipped.
+    """
+    events: list[Event] = []
+    for line_no, line in _iter_lines(text):
+        s = line.strip()
