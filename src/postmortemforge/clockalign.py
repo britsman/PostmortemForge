@@ -26,3 +26,8 @@ from dataclasses import dataclass, replace
 from .sources import Event
 
 
+@dataclass(frozen=True)
+class ClockModel:
+    """Linear clock model for one source, relative to the reference clock."""
+
+    source: str
