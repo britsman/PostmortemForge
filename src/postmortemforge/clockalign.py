@@ -16,3 +16,8 @@ each source clock with a linear map:
 
 The maps are declared, not inferred: this tool aligns against offsets an
 operator provides (from NTP records, a known deploy marker, and so on). The
+math is a plain affine transform, applied deterministically.
+"""
+
+from __future__ import annotations
+
