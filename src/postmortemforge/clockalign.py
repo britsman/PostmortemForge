@@ -31,3 +31,8 @@ class ClockModel:
     """Linear clock model for one source, relative to the reference clock."""
 
     source: str
+    offset_s: float = 0.0
+    skew_s_per_s: float = 0.0
+    anchor_ts: float = 0.0
+
+    def to_reference(self, raw_ts: float) -> float:
