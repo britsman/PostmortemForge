@@ -41,3 +41,8 @@ class ClockModel:
 
 
 @dataclass(frozen=True)
+class AlignedEvent:
+    """An Event whose timestamp has been projected onto the reference clock.
+
+    ref_ts is the reference-clock timestamp. source is the logical source name
+    (logs, metric, deploy). event carries the original record, including its
