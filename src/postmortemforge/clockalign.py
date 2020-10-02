@@ -36,3 +36,8 @@ class ClockModel:
     anchor_ts: float = 0.0
 
     def to_reference(self, raw_ts: float) -> float:
+        """Project a raw source timestamp onto the reference timeline."""
+        return raw_ts + self.offset_s + self.skew_s_per_s * (raw_ts - self.anchor_ts)
+
+
+@dataclass(frozen=True)
