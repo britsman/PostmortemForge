@@ -46,3 +46,8 @@ class AlignedEvent:
 
     ref_ts is the reference-clock timestamp. source is the logical source name
     (logs, metric, deploy). event carries the original record, including its
+    provenance and untouched raw_ts, so nothing observed is lost.
+    """
+
+    ref_ts: float
+    source: str
