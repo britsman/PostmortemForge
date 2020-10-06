@@ -51,3 +51,8 @@ class AlignedEvent:
 
     ref_ts: float
     source: str
+    event: Event
+
+
+def align(events: list[Event], model: ClockModel) -> list[AlignedEvent]:
+    """Apply a clock model to every event from one source.
