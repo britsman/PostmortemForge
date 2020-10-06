@@ -56,3 +56,9 @@ class AlignedEvent:
 
 def align(events: list[Event], model: ClockModel) -> list[AlignedEvent]:
     """Apply a clock model to every event from one source.
+
+    Returns AlignedEvents sorted by reference timestamp, then by original line
+    number for a stable, deterministic order when timestamps tie.
+    """
+    aligned = [
+        AlignedEvent(ref_ts=model.to_reference(ev.raw_ts), source=model.source, event=ev)
