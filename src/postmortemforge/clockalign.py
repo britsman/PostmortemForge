@@ -62,3 +62,8 @@ def align(events: list[Event], model: ClockModel) -> list[AlignedEvent]:
     """
     aligned = [
         AlignedEvent(ref_ts=model.to_reference(ev.raw_ts), source=model.source, event=ev)
+        for ev in events
+    ]
+    aligned.sort(key=lambda a: (a.ref_ts, a.event.prov.line_start))
+    return aligned
+
