@@ -21,3 +21,10 @@ Links produced (each carries the two events it relates and the gap in seconds):
 - rollback -> recovery: a rollback followed within window_s by the metric
   value returning below threshold (breach interval ending).
 
+A link is only emitted when both endpoints exist and the gap is within the
+window. Anything outside the window is left uncorrelated rather than guessed.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
