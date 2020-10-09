@@ -67,3 +67,8 @@ def align(events: list[Event], model: ClockModel) -> list[AlignedEvent]:
     aligned.sort(key=lambda a: (a.ref_ts, a.event.prov.line_start))
     return aligned
 
+
+def merge(*groups: list[AlignedEvent]) -> list[AlignedEvent]:
+    """Merge aligned events from several sources into one ordered stream.
+
+    Ordering is by reference timestamp, then source name, then line number, so
