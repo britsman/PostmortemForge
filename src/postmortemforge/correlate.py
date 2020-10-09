@@ -14,3 +14,10 @@ Features detected:
 - log error bursts: runs of ERROR level log events where consecutive errors are
   no more than burst_gap_s apart, with at least min_burst errors in the run.
 
+Links produced (each carries the two events it relates and the gap in seconds):
+
+- deploy -> breach: a metric breach that begins within window_s after a deploy.
+- deploy -> burst: an error burst that begins within window_s after a deploy.
+- rollback -> recovery: a rollback followed within window_s by the metric
+  value returning below threshold (breach interval ending).
+
