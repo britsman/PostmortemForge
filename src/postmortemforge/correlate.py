@@ -43,3 +43,10 @@ class Interval:
 
 
 @dataclass(frozen=True)
+class Burst:
+    """A run of error log events on the reference clock."""
+
+    start_ts: float
+    end_ts: float
+    count: int
+    events: tuple[AlignedEvent, ...]
