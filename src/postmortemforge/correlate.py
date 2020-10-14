@@ -36,3 +36,10 @@ from .clockalign import AlignedEvent
 class Interval:
     """A closed time interval on the reference clock, with its bounding events."""
 
+    start_ts: float
+    end_ts: float
+    start_event: AlignedEvent
+    end_event: AlignedEvent
+
+
+@dataclass(frozen=True)
