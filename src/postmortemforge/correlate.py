@@ -50,3 +50,11 @@ class Burst:
     end_ts: float
     count: int
     events: tuple[AlignedEvent, ...]
+
+    @property
+    def start_event(self) -> AlignedEvent:
+        return self.events[0]
+
+    @property
+    def end_event(self) -> AlignedEvent:
+        return self.events[-1]
