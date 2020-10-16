@@ -58,3 +58,10 @@ class Burst:
     @property
     def end_event(self) -> AlignedEvent:
         return self.events[-1]
+
+
+@dataclass(frozen=True)
+class Link:
+    """A causal relationship inferred from time proximity within a window."""
+
+    relation: str  # deploy_to_breach, deploy_to_burst, rollback_to_recovery
