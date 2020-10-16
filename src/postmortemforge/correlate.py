@@ -65,3 +65,10 @@ class Link:
     """A causal relationship inferred from time proximity within a window."""
 
     relation: str  # deploy_to_breach, deploy_to_burst, rollback_to_recovery
+    cause: AlignedEvent
+    effect: AlignedEvent
+    gap_s: float
+
+
+def deploy_events(events: list[AlignedEvent]) -> list[AlignedEvent]:
+    """Return deploy-source events in reference-clock order."""
