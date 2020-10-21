@@ -80,3 +80,10 @@ def breach_intervals(events: list[AlignedEvent], break_gap_s: float = 120.0) -> 
 
     Consecutive breached samples belong to the same interval unless separated by
     more than break_gap_s, which starts a new one.
+    """
+    breached = [e for e in events if e.source == "metric" and e.event.attrs.get("breached")]
+    breached.sort(key=lambda e: e.ref_ts)
+    intervals: list[Interval] = []
+    run: list[AlignedEvent] = []
+    for ev in breached:
+        if run and ev.ref_ts - run[-1].ref_ts > break_gap_s:
