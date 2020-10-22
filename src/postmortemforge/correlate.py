@@ -94,3 +94,11 @@ def breach_intervals(events: list[AlignedEvent], break_gap_s: float = 120.0) -> 
         intervals.append(Interval(run[0].ref_ts, run[-1].ref_ts, run[0], run[-1]))
     return intervals
 
+
+def error_bursts(
+    events: list[AlignedEvent], burst_gap_s: float = 60.0, min_burst: int = 3
+) -> list[Burst]:
+    """Find bursts of ERROR level log events.
+
+    A burst is a run of errors where each is within burst_gap_s of the previous,
+    containing at least min_burst errors.
