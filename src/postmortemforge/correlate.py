@@ -102,3 +102,10 @@ def error_bursts(
 
     A burst is a run of errors where each is within burst_gap_s of the previous,
     containing at least min_burst errors.
+    """
+    errors = [
+        e
+        for e in events
+        if e.source == "log" and e.event.attrs.get("level") == "ERROR"
+    ]
+    errors.sort(key=lambda e: e.ref_ts)
