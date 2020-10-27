@@ -116,3 +116,11 @@ def error_bursts(
             _flush_burst(run, min_burst, bursts)
             run = []
         run.append(ev)
+    _flush_burst(run, min_burst, bursts)
+    return bursts
+
+
+def _flush_burst(run: list[AlignedEvent], min_burst: int, out: list[Burst]) -> None:
+    if len(run) >= min_burst:
+        out.append(Burst(run[0].ref_ts, run[-1].ref_ts, len(run), tuple(run)))
+
