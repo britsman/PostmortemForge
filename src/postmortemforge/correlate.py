@@ -131,3 +131,10 @@ def correlate(events: list[AlignedEvent], window_s: float = 300.0) -> list[Link]
     Only links whose gap falls within window_s are emitted. Links are returned in
     a deterministic order: by cause timestamp, then relation name.
     """
+    deploys = deploy_events(events)
+    intervals = breach_intervals(events)
+    bursts = error_bursts(events)
+
+    links: list[Link] = []
+
+    deploy_actions = [d for d in deploys if d.event.attrs.get("action") == "deploy"]
