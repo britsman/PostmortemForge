@@ -16,3 +16,11 @@ from dataclasses import dataclass
 
 from .sources import Provenance
 from .timeline import Timeline, iso_utc
+
+
+class UngroundedStatement(ValueError):
+    """Raised if code attempts to build a Claim with no source span."""
+
+
+@dataclass(frozen=True)
+class Claim:
