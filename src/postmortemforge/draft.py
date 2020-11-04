@@ -39,3 +39,11 @@ class Claim:
 
 
 @dataclass(frozen=True)
+class Draft:
+    """A postmortem draft: titled sections, each a list of grounded claims."""
+
+    title: str
+    sections: tuple[tuple[str, tuple[Claim, ...]], ...]
+
+    def render(self) -> str:
+        lines: list[str] = [f"# {self.title}", ""]
