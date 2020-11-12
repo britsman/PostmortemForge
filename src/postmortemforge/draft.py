@@ -55,3 +55,11 @@ class Draft:
                 lines.append(claim.render())
             lines.append("")
         return "\n".join(lines).rstrip() + "\n"
+
+
+def _prov(*aligned_events) -> tuple[Provenance, ...]:
+    return tuple(ae.event.prov for ae in aligned_events)
+
+
+def build_draft(timeline: Timeline) -> Draft:
+    """Compose a postmortem draft from a timeline.
