@@ -47,3 +47,11 @@ class Draft:
 
     def render(self) -> str:
         lines: list[str] = [f"# {self.title}", ""]
+        for name, claims in self.sections:
+            lines.append(f"## {name}")
+            if not claims:
+                lines.append("(no statement could be grounded in a source span)")
+            for claim in claims:
+                lines.append(claim.render())
+            lines.append("")
+        return "\n".join(lines).rstrip() + "\n"
