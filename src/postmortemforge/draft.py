@@ -95,3 +95,11 @@ def build_draft(timeline: Timeline) -> Draft:
                 Claim(
                     text=f"A deploy of {ref} occurred at T+{mins:0.1f} min.",
                     sources=_prov(ae),
+                )
+            )
+        elif action == "rollback":
+            summary.append(
+                Claim(
+                    text=f"A rollback to {ref} occurred at T+{mins:0.1f} min.",
+                    sources=_prov(ae),
+                )
