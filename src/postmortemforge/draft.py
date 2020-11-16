@@ -79,3 +79,11 @@ def build_draft(timeline: Timeline) -> Draft:
         stamp = iso_utc(ae.ref_ts)
         timeline_claims.append(
             Claim(
+                text=f"T+{mins:0.1f} min ({stamp}) {ae.source}: {ae.event.text}",
+                sources=_prov(ae),
+            )
+        )
+
+    # Summary: deploy start and rollback, drawn from deploy events only.
+    deploys = [e for e in timeline.events if e.source == "deploy"]
+    for ae in deploys:
