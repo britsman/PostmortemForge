@@ -134,3 +134,11 @@ def build_draft(timeline: Timeline) -> Draft:
                 ),
                 sources=_prov(burst.start_event, burst.end_event),
             )
+        )
+
+    # Contributing cause and resolution: only from correlation links.
+    for link in timeline.links:
+        gap = link.gap_s
+        if link.relation == "deploy_to_breach":
+            ref = link.cause.event.attrs.get("ref", "")
+            metric = link.effect.event.attrs.get("metric", "metric")
