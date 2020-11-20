@@ -126,3 +126,11 @@ def build_draft(timeline: Timeline) -> Draft:
     for burst in timeline.bursts:
         start_m = timeline.minutes(burst.start_ts)
         end_m = timeline.minutes(burst.end_ts)
+        summary.append(
+            Claim(
+                text=(
+                    f"A burst of {burst.count} error log lines ran from "
+                    f"T+{start_m:0.1f} to T+{end_m:0.1f} min."
+                ),
+                sources=_prov(burst.start_event, burst.end_event),
+            )
