@@ -142,3 +142,11 @@ def build_draft(timeline: Timeline) -> Draft:
         if link.relation == "deploy_to_breach":
             ref = link.cause.event.attrs.get("ref", "")
             metric = link.effect.event.attrs.get("metric", "metric")
+            cause_claims.append(
+                Claim(
+                    text=(
+                        f"The deploy of {ref} was followed {gap:0.0f} s later by "
+                        f"{metric} crossing its threshold."
+                    ),
+                    sources=_prov(link.cause, link.effect),
+                )
