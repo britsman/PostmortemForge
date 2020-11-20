@@ -103,3 +103,11 @@ def build_draft(timeline: Timeline) -> Draft:
                     text=f"A rollback to {ref} occurred at T+{mins:0.1f} min.",
                     sources=_prov(ae),
                 )
+            )
+
+    # Metric breach extent, grounded in the bounding metric samples.
+    for interval in timeline.intervals:
+        start_m = timeline.minutes(interval.start_ts)
+        end_m = timeline.minutes(interval.end_ts)
+        metric = interval.start_event.event.attrs.get("metric", "metric")
+        threshold = interval.start_event.event.attrs.get("threshold")
