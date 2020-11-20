@@ -150,3 +150,11 @@ def build_draft(timeline: Timeline) -> Draft:
                     ),
                     sources=_prov(link.cause, link.effect),
                 )
+            )
+        elif link.relation == "deploy_to_burst":
+            ref = link.cause.event.attrs.get("ref", "")
+            cause_claims.append(
+                Claim(
+                    text=(
+                        f"The deploy of {ref} was followed {gap:0.0f} s later by "
+                        f"the start of an error burst."
