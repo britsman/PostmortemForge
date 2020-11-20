@@ -111,3 +111,10 @@ def build_draft(timeline: Timeline) -> Draft:
         end_m = timeline.minutes(interval.end_ts)
         metric = interval.start_event.event.attrs.get("metric", "metric")
         threshold = interval.start_event.event.attrs.get("threshold")
+        unit = interval.start_event.event.attrs.get("unit", "")
+        summary.append(
+            Claim(
+                text=(
+                    f"{metric} stayed past its threshold of {threshold:g}{unit} "
+                    f"from T+{start_m:0.1f} to T+{end_m:0.1f} min."
+                ),
