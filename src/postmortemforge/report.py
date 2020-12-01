@@ -37,3 +37,12 @@ def render_timeline(timeline: Timeline) -> str:
             f"  T+{mins:6.1f}m  {ae.source:<7}  {ae.event.prov.span():<20}  {ae.event.text}"
         )
     lines.append("LINKS")
+    if not timeline.links:
+        lines.append("  (none)")
+    for link in timeline.links:
+        cm = timeline.minutes(link.cause.ref_ts)
+        em = timeline.minutes(link.effect.ref_ts)
+        lines.append(
+            f"  {link.relation:<22}  T+{cm:0.1f}m -> T+{em:0.1f}m  gap={link.gap_s:0.0f}s"
+            f"  [{link.cause.event.prov.span()} -> {link.effect.event.prov.span()}]"
+        )
