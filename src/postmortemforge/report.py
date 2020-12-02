@@ -46,3 +46,12 @@ def render_timeline(timeline: Timeline) -> str:
             f"  {link.relation:<22}  T+{cm:0.1f}m -> T+{em:0.1f}m  gap={link.gap_s:0.0f}s"
             f"  [{link.cause.event.prov.span()} -> {link.effect.event.prov.span()}]"
         )
+    return "\n".join(lines) + "\n"
+
+
+# --- SVG rendering -----------------------------------------------------------
+
+# Palette reason is documented in the SVG comment. Two core colours plus one
+# accent, derived from the incident domain: a calm slate for structure, a steady
+# teal for healthy signal, and a single amber accent marking the deploy that
+# started the incident, the one thing to look at first.
