@@ -72,3 +72,12 @@ def _x_for_minute(minute: float, span_m: float, left: float, width: float) -> fl
         return left
     return left + (minute / span_m) * width
 
+
+def render_svg(timeline: Timeline) -> str:
+    """Draw the aligned timeline as an information graphic.
+
+    Layout: a horizontal minute axis, three source lanes stacked vertically, one
+    marker per event positioned by its minute offset, and connector lines for the
+    correlation links. All coordinates land on whole or half pixels.
+    """
+    left = 96.0
