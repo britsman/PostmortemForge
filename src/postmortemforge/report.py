@@ -63,3 +63,12 @@ _AMBER = "#b06a00"
 _GRID = "#cbd2d9"
 _WHITE = "#ffffff"
 
+_LANES = ("deploy", "metric", "log")
+_LANE_LABEL = {"deploy": "deploy", "metric": "metric", "log": "logs"}
+
+
+def _x_for_minute(minute: float, span_m: float, left: float, width: float) -> float:
+    if span_m <= 0:
+        return left
+    return left + (minute / span_m) * width
+
