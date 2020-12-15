@@ -89,3 +89,12 @@ def render_svg(timeline: Timeline) -> str:
     width = left + plot_w + right_pad
     n_lanes = len(_LANES)
     height = top + n_lanes * lane_h + (n_lanes - 1) * lane_gap + 72.0
+
+    span_m = timeline.span_minutes()
+    if span_m <= 0:
+        span_m = 1.0
+
+    lane_y = {}
+    for i, lane in enumerate(_LANES):
+        lane_y[lane] = top + i * (lane_h + lane_gap)
+
