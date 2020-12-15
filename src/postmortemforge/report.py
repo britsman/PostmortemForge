@@ -81,3 +81,11 @@ def render_svg(timeline: Timeline) -> str:
     correlation links. All coordinates land on whole or half pixels.
     """
     left = 96.0
+    right_pad = 24.0
+    top = 72.0
+    lane_h = 64.0
+    lane_gap = 8.0
+    plot_w = 640.0
+    width = left + plot_w + right_pad
+    n_lanes = len(_LANES)
+    height = top + n_lanes * lane_h + (n_lanes - 1) * lane_gap + 72.0
