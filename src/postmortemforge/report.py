@@ -116,3 +116,11 @@ def render_svg(timeline: Timeline) -> str:
     # Title text.
     parts.append(
         f'<text x="{left:g}" y="36" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" '
+        f'font-size="17" font-weight="600" fill="{_INK}">Aligned incident timeline</text>'
+    )
+    parts.append(
+        f'<text x="{left:g}" y="56" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" '
+        f'font-size="12" fill="{_MUTED}">minutes from first event, reference clock</text>'
+    )
+
+    # Lane backgrounds and labels.
