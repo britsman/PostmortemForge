@@ -133,3 +133,12 @@ def render_svg(timeline: Timeline) -> str:
         parts.append(
             f'<text x="{left - 12:g}" y="{y + lane_h / 2 + 4:g}" text-anchor="end" '
             f'font-family="&quot;Cascadia Mono&quot;, &quot;JetBrains Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" '
+            f'font-size="12" fill="{_INK}">{escape(_LANE_LABEL[lane])}</text>'
+        )
+
+    # Minute axis: ticks at whole minutes across the span.
+    axis_y = top + n_lanes * lane_h + (n_lanes - 1) * lane_gap + 20.0
+    tick_step = _tick_step(span_m)
+    parts.append(
+        f'<line x1="{left:g}" y1="{axis_y:g}" x2="{left + plot_w:g}" y2="{axis_y:g}" '
+        f'stroke="{_MUTED}" stroke-width="1"/>'
