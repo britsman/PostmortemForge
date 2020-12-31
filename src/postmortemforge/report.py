@@ -150,3 +150,12 @@ def render_svg(timeline: Timeline) -> str:
         parts.append(
             f'<line x1="{x:g}" y1="{top:g}" x2="{x:g}" y2="{axis_y:g}" '
             f'stroke="{_GRID}" stroke-width="1"/>'
+        )
+        parts.append(
+            f'<text x="{x:g}" y="{axis_y + 16:g}" text-anchor="middle" '
+            f'font-family="&quot;Cascadia Mono&quot;, &quot;JetBrains Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" '
+            f'font-size="11" fill="{_MUTED}">{m:g}</text>'
+        )
+        m += tick_step
+
+    # Link connectors first, so markers sit on top.
