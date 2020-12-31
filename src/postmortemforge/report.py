@@ -159,3 +159,12 @@ def render_svg(timeline: Timeline) -> str:
         m += tick_step
 
     # Link connectors first, so markers sit on top.
+    ev_pos = {}
+    for ae in timeline.events:
+        mins = timeline.minutes(ae.ref_ts)
+        x = round(_x_for_minute(mins, span_m, left, plot_w) * 2) / 2
+        y = lane_y[ae.source] + lane_h / 2
+        ev_pos[id(ae)] = (x, y)
+
+    for link in timeline.links:
+        cx, cy = ev_pos[id(link.cause)]
