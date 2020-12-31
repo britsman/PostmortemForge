@@ -142,3 +142,11 @@ def render_svg(timeline: Timeline) -> str:
     parts.append(
         f'<line x1="{left:g}" y1="{axis_y:g}" x2="{left + plot_w:g}" y2="{axis_y:g}" '
         f'stroke="{_MUTED}" stroke-width="1"/>'
+    )
+    m = 0.0
+    while m <= span_m + 1e-9:
+        x = _x_for_minute(m, span_m, left, plot_w)
+        x = round(x * 2) / 2
+        parts.append(
+            f'<line x1="{x:g}" y1="{top:g}" x2="{x:g}" y2="{axis_y:g}" '
+            f'stroke="{_GRID}" stroke-width="1"/>'
