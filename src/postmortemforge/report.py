@@ -168,3 +168,12 @@ def render_svg(timeline: Timeline) -> str:
 
     for link in timeline.links:
         cx, cy = ev_pos[id(link.cause)]
+        ex, ey = ev_pos[id(link.effect)]
+        parts.append(
+            f'<line x1="{cx:g}" y1="{cy:g}" x2="{ex:g}" y2="{ey:g}" '
+            f'stroke="{_MUTED}" stroke-width="1" stroke-dasharray="3 3"/>'
+        )
+
+    # Event markers and labels.
+    for ae in timeline.events:
+        x, y = ev_pos[id(ae)]
