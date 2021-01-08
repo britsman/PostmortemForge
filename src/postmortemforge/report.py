@@ -185,3 +185,12 @@ def render_svg(timeline: Timeline) -> str:
         anchor, dx = _label_placement(x, left, plot_w)
         parts.append(
             f'<text x="{x + dx:g}" y="{y - 10:g}" text-anchor="{anchor}" '
+            f'font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" '
+            f'font-size="11" fill="{_INK}">{escape(label)}</text>'
+        )
+
+    parts.append("</svg>")
+    return "\n".join(parts) + "\n"
+
+
+def _tick_step(span_m: float) -> float:
