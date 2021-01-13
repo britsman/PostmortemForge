@@ -35,3 +35,13 @@ class TestSources(unittest.TestCase):
         self.assertEqual(events[1].prov.span(), "logs.txt:2")
 
     def test_metric_header_and_breach_flag(self):
+        text = (
+            "# metric latency_p99_ms unit=ms threshold=400 direction=above\n"
+            "2026-03-01T08:00:00Z 100\n"
+            "2026-03-01T08:00:30Z 500\n"
+        )
+        meta, events = S.read_metric(text, "metric.txt")
+        self.assertEqual(meta.name, "latency_p99_ms")
+        self.assertEqual(meta.threshold, 400.0)
+        self.assertFalse(events[0].attrs["breached"])
+        self.assertTrue(events[1].attrs["breached"])
