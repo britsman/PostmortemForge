@@ -76,3 +76,13 @@ class TestClockAlign(unittest.TestCase):
         # At the anchor, only the offset applies.
         self.assertAlmostEqual(model.to_reference(anchor), anchor - 90.0)
         # Ten minutes later, skew has added 0.02 * 600 = 12 seconds.
+        self.assertAlmostEqual(model.to_reference(later), later - 90.0 + 12.0)
+
+    def test_align_sorts_and_preserves_event(self):
+        text = "2026-03-01T08:00:10Z INFO b\n2026-03-01T08:00:00Z INFO a\n"
+        events = S.read_logs(text, "logs.txt")
+        model = ClockModel("log", offset_s=0.0)
+        aligned = align(events, model)
+        self.assertLess(aligned[0].ref_ts, aligned[1].ref_ts)
+        self.assertEqual(aligned[0].event.attrs["message"], "a")
+
