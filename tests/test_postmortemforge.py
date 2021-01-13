@@ -56,3 +56,13 @@ class TestSources(unittest.TestCase):
 
     def test_bad_timestamp_raises(self):
         with self.assertRaises(S.SourceError):
+            S.read_logs("not-a-time INFO x\n", "logs.txt")
+
+    def test_bad_direction_raises(self):
+        with self.assertRaises(S.SourceError):
+            S.read_metric("# metric m unit=ms threshold=1 direction=sideways\n", "m.txt")
+
+
+class TestClockAlign(unittest.TestCase):
+    def test_offset_only(self):
+        raw = S._parse_ts("2026-03-01T08:00:00Z", "x", 1)
