@@ -86,3 +86,13 @@ class TestClockAlign(unittest.TestCase):
         self.assertLess(aligned[0].ref_ts, aligned[1].ref_ts)
         self.assertEqual(aligned[0].event.attrs["message"], "a")
 
+    def test_merge_is_deterministic_across_input_order(self):
+        log = S.read_logs("2026-03-01T08:00:05Z INFO l\n", "logs.txt")
+        dep = S.read_deploy("2026-03-01T08:00:05Z deploy ref=v1\n", "deploy.txt")
+        a = merge(align(log, ClockModel("log")), align(dep, ClockModel("deploy")))
+        b = merge(align(dep, ClockModel("deploy")), align(log, ClockModel("log")))
+        self.assertEqual([e.source for e in a], [e.source for e in b])
+
+
+class TestSampleAlignment(unittest.TestCase):
+    """Assert the alignment against the sample fixtures with declared offsets."""
