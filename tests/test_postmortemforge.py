@@ -66,3 +66,13 @@ class TestSources(unittest.TestCase):
 class TestClockAlign(unittest.TestCase):
     def test_offset_only(self):
         raw = S._parse_ts("2026-03-01T08:00:00Z", "x", 1)
+        model = ClockModel("log", offset_s=45.0, skew_s_per_s=0.0, anchor_ts=raw)
+        self.assertAlmostEqual(model.to_reference(raw), raw + 45.0)
+
+    def test_skew_accumulates_from_anchor(self):
+        anchor = S._parse_ts("2026-03-01T08:00:00Z", "x", 1)
+        later = anchor + 600.0  # ten minutes past the anchor
+        model = ClockModel("metric", offset_s=-90.0, skew_s_per_s=0.02, anchor_ts=anchor)
+        # At the anchor, only the offset applies.
+        self.assertAlmostEqual(model.to_reference(anchor), anchor - 90.0)
+        # Ten minutes later, skew has added 0.02 * 600 = 12 seconds.
