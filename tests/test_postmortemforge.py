@@ -96,3 +96,14 @@ class TestClockAlign(unittest.TestCase):
 
 class TestSampleAlignment(unittest.TestCase):
     """Assert the alignment against the sample fixtures with declared offsets."""
+
+    def test_sample_offsets_project_to_expected_reference_times(self):
+        log_events = S.read_logs(S.read_file(_sample("logs.txt")), "logs.txt")
+        _, metric_events = S.read_metric(S.read_file(_sample("metric.txt")), "metric.txt")
+        deploy_events = S.read_deploy(S.read_file(_sample("deploy.txt")), "deploy.txt")
+
+        # Deploy is the reference clock.
+        dep_model = ClockModel("deploy", 0.0, 0.0, 0.0)
+        dep_aligned = align(deploy_events, dep_model)
+        # First deploy stays at its written time.
+        self.assertEqual(iso_utc(dep_aligned[0].ref_ts), "2026-03-01T08:00:00Z")
