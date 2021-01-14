@@ -107,3 +107,13 @@ class TestSampleAlignment(unittest.TestCase):
         dep_aligned = align(deploy_events, dep_model)
         # First deploy stays at its written time.
         self.assertEqual(iso_utc(dep_aligned[0].ref_ts), "2026-03-01T08:00:00Z")
+
+        # Log host is 45 s behind: raw 07:59:20 + 45 = 08:00:05 reference.
+        log_first_raw = min(e.raw_ts for e in log_events)
+        log_model = with_anchor(ClockModel("log", 45.0, 0.0), log_first_raw)
+        log_aligned = align(log_events, log_model)
+        self.assertEqual(iso_utc(log_aligned[0].ref_ts), "2026-03-01T08:00:05Z")
+
+        # Metric exporter is 90 s ahead with 0.02 s/s skew, anchored at its first
+        # sample (raw 08:01:30). At the anchor, ref = raw - 90 = 08:00:00.
+        met_first_raw = min(e.raw_ts for e in metric_events)
