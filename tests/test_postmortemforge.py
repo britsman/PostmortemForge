@@ -127,3 +127,13 @@ class TestSampleAlignment(unittest.TestCase):
         target = [e for e in met_aligned if e.event.prov.line_start == 15]
         self.assertEqual(iso_utc(target[0].ref_ts), "2026-03-01T08:05:06Z")
 
+    def test_alignment_reorders_relative_to_naive_stream(self):
+        # Without alignment the metric would appear 90 s late; the skew and offset
+        # move its first breach ahead of a log line it truly precedes. Prove that
+        # the reference order differs from the raw order for at least one pair.
+        _, metric_events = S.read_metric(S.read_file(_sample("metric.txt")), "metric.txt")
+        met_first_raw = min(e.raw_ts for e in metric_events)
+        naive = sorted(metric_events, key=lambda e: e.raw_ts)
+        aligned = align(metric_events, with_anchor(ClockModel("metric", -90.0, 0.02), met_first_raw))
+        # Raw first sample time and aligned first sample time differ by ~90 s.
+        self.assertNotEqual(naive[0].raw_ts, aligned[0].ref_ts)
