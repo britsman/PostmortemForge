@@ -158,3 +158,13 @@ class TestCorrelate(unittest.TestCase):
         aligned = self._load_aligned()
         intervals = breach_intervals(aligned)
         bursts = error_bursts(aligned)
+        self.assertEqual(len(intervals), 1)
+        self.assertEqual(len(bursts), 1)
+        self.assertEqual(bursts[0].count, 5)
+
+    def test_links_cover_deploy_breach_burst_and_recovery(self):
+        aligned = self._load_aligned()
+        links = correlate(aligned)
+        relations = sorted({l.relation for l in links})
+        self.assertEqual(
+            relations,
