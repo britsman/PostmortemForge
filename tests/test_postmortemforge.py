@@ -137,3 +137,13 @@ class TestSampleAlignment(unittest.TestCase):
         aligned = align(metric_events, with_anchor(ClockModel("metric", -90.0, 0.02), met_first_raw))
         # Raw first sample time and aligned first sample time differ by ~90 s.
         self.assertNotEqual(naive[0].raw_ts, aligned[0].ref_ts)
+        self.assertAlmostEqual(aligned[0].ref_ts, naive[0].raw_ts - 90.0, places=3)
+
+
+class TestCorrelate(unittest.TestCase):
+    def _load_aligned(self):
+        log_events = S.read_logs(S.read_file(_sample("logs.txt")), "logs.txt")
+        _, metric_events = S.read_metric(S.read_file(_sample("metric.txt")), "metric.txt")
+        deploy_events = S.read_deploy(S.read_file(_sample("deploy.txt")), "deploy.txt")
+        lf = min(e.raw_ts for e in log_events)
+        mf = min(e.raw_ts for e in metric_events)
