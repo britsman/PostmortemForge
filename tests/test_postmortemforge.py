@@ -147,3 +147,14 @@ class TestCorrelate(unittest.TestCase):
         deploy_events = S.read_deploy(S.read_file(_sample("deploy.txt")), "deploy.txt")
         lf = min(e.raw_ts for e in log_events)
         mf = min(e.raw_ts for e in metric_events)
+        groups = [
+            align(log_events, with_anchor(ClockModel("log", 45.0, 0.0), lf)),
+            align(metric_events, with_anchor(ClockModel("metric", -90.0, 0.02), mf)),
+            align(deploy_events, ClockModel("deploy", 0.0, 0.0, 0.0)),
+        ]
+        return merge(*groups)
+
+    def test_one_breach_interval_and_one_burst(self):
+        aligned = self._load_aligned()
+        intervals = breach_intervals(aligned)
+        bursts = error_bursts(aligned)
