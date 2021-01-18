@@ -178,3 +178,13 @@ class TestCorrelate(unittest.TestCase):
             self.assertTrue(link.cause.event.prov.span())
             self.assertTrue(link.effect.event.prov.span())
 
+
+class TestDraft(unittest.TestCase):
+    def test_claim_requires_a_source(self):
+        with self.assertRaises(UngroundedStatement):
+            Claim("ungrounded assertion", tuple())
+
+    def test_claim_renders_with_citation(self):
+        c = Claim("something happened", (Provenance("f.txt", 3, 4),))
+        self.assertEqual(c.render(), "- something happened [f.txt:3-4]")
+
