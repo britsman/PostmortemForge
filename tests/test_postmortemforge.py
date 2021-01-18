@@ -168,3 +168,13 @@ class TestCorrelate(unittest.TestCase):
         relations = sorted({l.relation for l in links})
         self.assertEqual(
             relations,
+            ["deploy_to_breach", "deploy_to_burst", "rollback_to_recovery"],
+        )
+
+    def test_links_carry_both_endpoints_provenance(self):
+        aligned = self._load_aligned()
+        links = correlate(aligned)
+        for link in links:
+            self.assertTrue(link.cause.event.prov.span())
+            self.assertTrue(link.effect.event.prov.span())
+
