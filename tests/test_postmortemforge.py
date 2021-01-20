@@ -199,3 +199,13 @@ class TestDraft(unittest.TestCase):
             align(metric_events, with_anchor(ClockModel("metric", -90.0, 0.02), mf)),
             align(deploy_events, ClockModel("deploy", 0.0, 0.0, 0.0)),
         )
+        tl = build(aligned)
+        draft = build_draft(tl)
+        rendered = draft.render()
+        for line in rendered.splitlines():
+            if line.startswith("- "):
+                self.assertIn("[", line)
+                self.assertIn("]", line)
+                self.assertRegex(line, r"\[[^\]]*:\d")
+
+    def test_draft_is_byte_identical_across_runs(self):
