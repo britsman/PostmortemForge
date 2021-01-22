@@ -229,3 +229,13 @@ class TestDraft(unittest.TestCase):
 class TestCli(unittest.TestCase):
     def setUp(self):
         import contextlib
+        import io
+        self._buf = io.StringIO()
+        self._redirect = contextlib.redirect_stdout(self._buf)
+        self._redirect.__enter__()
+
+    def tearDown(self):
+        self._redirect.__exit__(None, None, None)
+
+    def _args(self, *extra):
+        return [
