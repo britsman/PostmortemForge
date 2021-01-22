@@ -219,3 +219,13 @@ class TestDraft(unittest.TestCase):
             aligned = merge(
                 align(log_events, with_anchor(ClockModel("log", 45.0, 0.0), lf)),
                 align(metric_events, with_anchor(ClockModel("metric", -90.0, 0.02), mf)),
+                align(deploy_events, ClockModel("deploy", 0.0, 0.0, 0.0)),
+            )
+            return build_draft(build(aligned)).render()
+
+        self.assertEqual(render_once(), render_once())
+
+
+class TestCli(unittest.TestCase):
+    def setUp(self):
+        import contextlib
