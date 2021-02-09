@@ -9,3 +9,7 @@ and draft writer can be exercised end to end and asserted in tests.
 On the reference clock:
 
 - T+0.0 min: a deploy of v2.4.1.
+- T+1.0 min: the latency_p99_ms metric crosses its 400 ms threshold.
+- T+2.6 min: an error burst begins in the application logs.
+- T+6.0 min: a rollback to v2.4.0.
+- shortly after: the metric returns below threshold and the errors stop.
