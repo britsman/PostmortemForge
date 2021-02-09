@@ -13,3 +13,6 @@ On the reference clock:
 - T+2.6 min: an error burst begins in the application logs.
 - T+6.0 min: a rollback to v2.4.0.
 - shortly after: the metric returns below threshold and the errors stop.
+
+## The three clocks
+
