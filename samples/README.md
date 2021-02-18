@@ -24,3 +24,7 @@ projects onto the reference clock:
 - `logs.txt` runs 45 seconds behind the reference: offset +45.
 - `metric.txt` runs 90 seconds ahead of the reference and drifts fast at
   0.02 seconds per second, anchored at its first sample: offset -90, skew 0.02.
+
+The offsets are deliberate so the alignment code is genuinely required. The test
+`TestSampleAlignment` asserts the projected reference times, including the
+accumulated skew on a metric sample 300 seconds past the anchor.
