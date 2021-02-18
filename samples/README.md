@@ -20,3 +20,7 @@ Each source is written on its own clock, and the timestamps in the files are the
 raw, unaligned values. The alignment config, `align.txt`, declares how each
 projects onto the reference clock:
 
+- `deploy.txt` is the reference clock: offset 0, skew 0.
+- `logs.txt` runs 45 seconds behind the reference: offset +45.
+- `metric.txt` runs 90 seconds ahead of the reference and drifts fast at
+  0.02 seconds per second, anchored at its first sample: offset -90, skew 0.02.
