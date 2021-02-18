@@ -16,3 +16,7 @@ On the reference clock:
 
 ## The three clocks
 
+Each source is written on its own clock, and the timestamps in the files are the
+raw, unaligned values. The alignment config, `align.txt`, declares how each
+projects onto the reference clock:
+
