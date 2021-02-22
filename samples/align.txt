@@ -1,3 +1,4 @@
 # clock alignment config: one line per source.
 #   <source> offset=<seconds> skew=<seconds_per_second> anchor=<iso8601|first>
 # reference_ts = raw_ts + offset + skew * (raw_ts - anchor)
+#
