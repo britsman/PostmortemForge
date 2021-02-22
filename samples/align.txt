@@ -4,3 +4,4 @@
 #
 # deploy is the reference clock: no correction.
 # logs host runs 45 s behind the reference, so add 45.
+# metric exporter runs 90 s ahead (subtract 90) and drifts fast at 0.02 s/s,
