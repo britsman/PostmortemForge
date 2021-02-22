@@ -2,3 +2,5 @@
 #   <source> offset=<seconds> skew=<seconds_per_second> anchor=<iso8601|first>
 # reference_ts = raw_ts + offset + skew * (raw_ts - anchor)
 #
+# deploy is the reference clock: no correction.
+# logs host runs 45 s behind the reference, so add 45.
