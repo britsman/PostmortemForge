@@ -1,1 +1,3 @@
 # application log export: <iso8601> <LEVEL> <message>
+# This host's clock runs behind the reference; align.txt supplies the offset.
+# Raw timestamps below are on the host's own clock.
