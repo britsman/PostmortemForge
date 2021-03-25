@@ -1,2 +1,3 @@
 # deploy record export, one action per line: <iso8601> <action> ref=<ref>
 # This source's clock is the reference: offset 0, skew 0.
+2026-03-01T08:00:00Z deploy ref=v2.4.1
