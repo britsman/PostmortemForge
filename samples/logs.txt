@@ -2,3 +2,5 @@
 # This host's clock runs behind the reference; align.txt supplies the offset.
 # Raw timestamps below are on the host's own clock.
 2026-03-01T07:59:20Z INFO service started build=v2.4.1
+2026-03-01T08:00:35Z INFO config reloaded
+2026-03-01T08:01:20Z WARN upstream latency rising pool=checkout
