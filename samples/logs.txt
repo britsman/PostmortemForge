@@ -5,3 +5,5 @@
 2026-03-01T08:00:35Z INFO config reloaded
 2026-03-01T08:01:20Z WARN upstream latency rising pool=checkout
 2026-03-01T08:01:50Z ERROR upstream timeout pool=checkout after=2000ms
+2026-03-01T08:02:05Z ERROR upstream timeout pool=checkout after=2000ms
+2026-03-01T08:02:35Z ERROR circuit open pool=checkout
