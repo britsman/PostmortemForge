@@ -8,3 +8,5 @@
 2026-03-01T08:02:05Z ERROR upstream timeout pool=checkout after=2000ms
 2026-03-01T08:02:35Z ERROR circuit open pool=checkout
 2026-03-01T08:03:05Z ERROR upstream timeout pool=checkout after=2000ms
+2026-03-01T08:03:40Z ERROR circuit open pool=checkout
+2026-03-01T08:05:15Z WARN retries elevated pool=checkout
