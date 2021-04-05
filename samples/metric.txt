@@ -1,3 +1,6 @@
 # metric latency_p99_ms unit=ms threshold=400 direction=above
 # Metric series export: <iso8601> <value>. This exporter's clock runs ahead of
 # the reference and drifts slightly, corrected by align.txt (offset, skew).
+# Raw timestamps below are on the exporter's own clock.
+2026-03-01T08:01:30Z 210
+2026-03-01T08:02:00Z 235
