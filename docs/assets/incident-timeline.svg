@@ -21,3 +21,7 @@ to recovery.</desc>
 <rect x="96" y="72" width="640" height="64" rx="3" fill="#eef2f5"/>
 <text x="84" y="108" text-anchor="end" font-family="&quot;Cascadia Mono&quot;, &quot;JetBrains Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="12" fill="#1f2933">deploy</text>
 <rect x="96" y="144" width="640" height="64" rx="3" fill="#eef2f5"/>
+<text x="84" y="180" text-anchor="end" font-family="&quot;Cascadia Mono&quot;, &quot;JetBrains Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="12" fill="#1f2933">metric</text>
+<rect x="96" y="216" width="640" height="64" rx="3" fill="#eef2f5"/>
+<text x="84" y="252" text-anchor="end" font-family="&quot;Cascadia Mono&quot;, &quot;JetBrains Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="12" fill="#1f2933">logs</text>
+
