@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 352" role="img" aria-labelledby="ttl dsc">
+<!-- Palette reason: incident timeline. Slate ink for structure, teal for the metric series and
+     healthy signal, one amber accent carrying the incident itself: the deploy that started it,
+     the latency samples at or above the recorded 470ms breach onset, and the ERROR log events.
+     Colour is the encoding here, not decoration, so the legend prints what each mark means.
+     Flat fills, no gradients, no filters. -->
+<title id="ttl">Aligned incident timeline, 8.4 minutes across three sources</title>
+<desc id="dsc">Three lanes share a minute axis measured from the first event. The deploy lane marks the
+v2.4.1 deploy and the v2.4.0 rollback. The metric lane plots fourteen latency samples from 205ms to
