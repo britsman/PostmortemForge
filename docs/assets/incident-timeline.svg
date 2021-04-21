@@ -53,3 +53,7 @@ to recovery.</desc>
 <polyline fill="none" stroke="#0f7d74" stroke-width="1.5" points="96,199.6 135,197.6 173.5,178.8 212.5,167.6 251,164 290,165.2 328.5,161.2 367.5,160 406,163.6 445,166.8 484,173.2 522.5,178.8 561.5,196.4 600,200"/>
 <circle cx="96" cy="199.6" r="3.5" fill="#0f7d74"/>
 <circle cx="135" cy="197.6" r="3.5" fill="#0f7d74"/>
+<circle cx="173.5" cy="178.8" r="4" fill="#b06a00"/>
+<circle cx="212.5" cy="167.6" r="4" fill="#b06a00"/>
+<circle cx="251" cy="164" r="4" fill="#b06a00"/>
+<circle cx="290" cy="165.2" r="4" fill="#b06a00"/>
