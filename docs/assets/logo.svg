@@ -2,3 +2,5 @@
 <!-- Palette reason: same incident timeline scheme as the diagram. Slate ink for
      structure, teal for the three source lanes, one amber dot marking the deploy
      event that starts every incident this tool reconstructs. The mark is a
+     literal three-lane timeline: the tool's core data structure. Flat fills. -->
+<title id="ttl">PostmortemForge logo</title>
