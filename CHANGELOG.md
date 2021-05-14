@@ -7,3 +7,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 
 ### Added
 
+- `ingest` and `timeline` now accept an `--out` flag that writes the aligned
