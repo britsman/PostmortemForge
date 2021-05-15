@@ -12,3 +12,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   review can keep the evidence snapshot next to the draft.
 
 ## [0.6.0] - 2026-09-02
+
