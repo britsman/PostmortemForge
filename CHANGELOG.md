@@ -16,3 +16,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 ### Added
 
 - Postmortem draft writer (`draft.py`) where every statement cites the exact
+  source file and line span it came from; ungrounded statements are omitted.
