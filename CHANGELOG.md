@@ -20,3 +20,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 - `--window` flag on `draft` to bound the correlation window used by the
   draft's timeline section.
 
+### Changed
