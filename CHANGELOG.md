@@ -19,3 +19,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   source file and line span it came from; ungrounded statements are omitted.
 - `--window` flag on `draft` to bound the correlation window used by the
   draft's timeline section.
+
