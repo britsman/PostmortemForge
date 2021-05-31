@@ -26,3 +26,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   by source order, independent of input file order.
 
 ## [0.5.0] - 2025-11-18
+
