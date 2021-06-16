@@ -32,3 +32,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 - Windowed correlation between deploys, metric breach intervals, and log
   error bursts (`correlate.py`), plus rollback-to-recovery detection that
   names the deploy that a metric recovery or log quiet period is attributed
+  to.
