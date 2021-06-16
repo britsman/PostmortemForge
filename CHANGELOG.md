@@ -30,3 +30,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 ### Added
 
 - Windowed correlation between deploys, metric breach intervals, and log
+  error bursts (`correlate.py`), plus rollback-to-recovery detection that
