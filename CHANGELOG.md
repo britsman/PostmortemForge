@@ -39,3 +39,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 ### Changed
 
 - Breach intervals are now computed from the declared threshold at ingest
+  time, so the same metric file can be re-run with different thresholds
