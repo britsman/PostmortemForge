@@ -37,3 +37,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   the first event.
 
 ### Changed
+
