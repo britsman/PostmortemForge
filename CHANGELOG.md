@@ -36,3 +36,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 - `timeline` subcommand that prints the correlated timeline in minutes from
   the first event.
 
+### Changed
