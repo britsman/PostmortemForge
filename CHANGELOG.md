@@ -42,3 +42,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   time, so the same metric file can be re-run with different thresholds
   without re-reading the source.
 
+## [0.4.0] - 2024-06-21
