@@ -46,3 +46,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 
 ### Added
 
+- Clock alignment against a declared reference clock (`clockalign.py`): per
