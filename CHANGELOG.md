@@ -51,3 +51,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 - `ingest` subcommand that lists every aligned event with its source span.
 
 ### Fixed
+
