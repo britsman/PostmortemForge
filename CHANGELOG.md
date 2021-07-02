@@ -50,3 +50,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   source offset plus linear skew anchored at a chosen instant.
 - `ingest` subcommand that lists every aligned event with its source span.
 
+### Fixed
