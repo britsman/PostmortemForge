@@ -52,3 +52,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 
 ### Fixed
 
+- Events on the exact boundary of an alignment window are no longer dropped
