@@ -60,3 +60,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 ### Added
 
 - Reader for application logs (`sources.py`) with one event per line, a
+  required timestamp field, and source file/line span tracking.
