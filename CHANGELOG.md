@@ -64,3 +64,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 - Reader for a metric series with a declared threshold, and a reader for a
   deploy record, both with the same span tracking as the log reader.
 
+### Changed
