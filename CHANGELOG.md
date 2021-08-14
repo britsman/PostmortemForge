@@ -65,3 +65,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   deploy record, both with the same span tracking as the log reader.
 
 ### Changed
+
