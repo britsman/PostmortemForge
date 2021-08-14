@@ -67,3 +67,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 ### Changed
 
 - All readers now share a single event model, so alignment and correlation
+  treat the three export kinds uniformly.
