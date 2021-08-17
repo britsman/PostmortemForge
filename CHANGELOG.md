@@ -71,3 +71,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 
 ## [0.2.0] - 2022-09-04
 
+### Added
