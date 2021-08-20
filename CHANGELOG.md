@@ -73,3 +73,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 
 ### Added
 
+- The ordered timeline model (`timeline.py`) measured in minutes from the
