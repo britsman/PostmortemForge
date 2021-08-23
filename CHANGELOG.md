@@ -77,3 +77,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   first event, with stable per event labels.
 - CLI scaffold with `version` and a first `timeline` pass over a single log
   file, printing aligned timestamps without correlation.
+
