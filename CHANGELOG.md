@@ -78,3 +78,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 - CLI scaffold with `version` and a first `timeline` pass over a single log
   file, printing aligned timestamps without correlation.
 
+## [0.1.0] - 2021-06-14
