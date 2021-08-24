@@ -79,3 +79,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   file, printing aligned timestamps without correlation.
 
 ## [0.1.0] - 2021-06-14
+
