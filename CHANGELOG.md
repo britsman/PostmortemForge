@@ -80,3 +80,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 
 ## [0.1.0] - 2021-06-14
 
+### Added
