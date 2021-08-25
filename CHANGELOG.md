@@ -83,3 +83,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 ### Added
 
 - The incident model in prose: evidence exports, declared reference clocks,
+  and the requirement that every generated statement stays grounded in a
