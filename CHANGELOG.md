@@ -85,3 +85,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
 - The incident model in prose: evidence exports, declared reference clocks,
   and the requirement that every generated statement stays grounded in a
   source span.
+- First file format sketch for logs and a fixture that exercises it.
