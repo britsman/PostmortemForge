@@ -65,3 +65,9 @@ to recovery.</desc>
 <circle cx="522.5" cy="178.8" r="4" fill="#b06a00"/>
 <circle cx="561.5" cy="196.4" r="3.5" fill="#0f7d74"/>
 <circle cx="600" cy="200" r="3.5" fill="#0f7d74"/>
+<text x="102" y="203" text-anchor="start" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1f2933">210ms</text>
+<text x="376" y="163" text-anchor="start" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1f2933">peak 705ms</text>
+<text x="594" y="203" text-anchor="end" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1f2933">205ms</text>
+
+<!-- logs lane: 12 real events, mark size and colour encode severity -->
+<circle cx="102.5" cy="248" r="2.5" fill="#0f7d74"/>
