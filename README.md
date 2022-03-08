@@ -249,3 +249,35 @@ the last breached sample is at T+5.6, just before the rollback at T+6.0; the gap
 absolute distance, 23 seconds. The correlator allows the recovery endpoint to fall
 either side of the rollback within the window, which is why a breach ending slightly
 before the rollback still counts as the recovery it enabled.
+
+## Grounded claims
+
+The draft writer emits only `Claim` objects, and a `Claim` cannot be constructed without
+at least one `Provenance`. The guarantee is enforced in the type's `__post_init__`:
+
+```python
+def __post_init__(self) -> None:
+    if not self.sources:
+        raise UngroundedStatement(f"claim has no source span: {self.text!r}")
+```
+
+Because the renderer only ever prints `Claim`s, and a `Claim` cannot exist without a
+source span, no ungrounded sentence can reach the page. There is no code path that
+formats a bare string into the draft body. This is verified two ways in the tests:
+`test_claim_requires_a_source` asserts that building `Claim("...", tuple())` raises
+`UngroundedStatement`, and `test_every_rendered_claim_line_has_a_citation` asserts every
+`- ` line in a real rendered draft contains a `[path:line]` citation.
+
+What this guarantees about the draft: if a claim would require a fact the evidence does
+not contain, the writer omits it rather than hedging it. A section with no grounded
+claims renders the explicit note `(no statement could be grounded in a source span)`
+instead of narrative. You never read a sentence you cannot trace.
+
+## A worked run producing the draft
+
+`draft` writes the cited postmortem. This is the full captured output from the sample
+fixtures, verbatim:
+
+```
+$ python -m postmortemforge draft --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt
+# Incident postmortem draft
