@@ -281,3 +281,35 @@ fixtures, verbatim:
 ```
 $ python -m postmortemforge draft --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt
 # Incident postmortem draft
+
+## Summary
+- A deploy of v2.4.1 occurred at T+0.0 min. [samples/deploy.txt:3]
+- A rollback to v2.4.0 occurred at T+6.0 min. [samples/deploy.txt:4]
+- latency_p99_ms stayed past its threshold of 400ms from T+1.0 to T+5.6 min. [samples/metric.txt:7, samples/metric.txt:16]
+- A burst of 5 error log lines ran from T+2.6 to T+4.4 min. [samples/logs.txt:7, samples/logs.txt:11]
+
+## Timeline
+- T+0.0 min (2026-03-01T08:00:00Z) deploy: deploy v2.4.1 [samples/deploy.txt:3]
+- T+0.0 min (2026-03-01T08:00:00Z) metric: latency_p99_ms=210ms [samples/metric.txt:5]
+- T+0.1 min (2026-03-01T08:00:05Z) log: service started build=v2.4.1 [samples/logs.txt:4]
+- ... (one cited line per event, 28 in all; elided here for length)
+- T+8.4 min (2026-03-01T08:08:25Z) log: request served status=200 [samples/logs.txt:15]
+
+## Contributing cause
+- The deploy of v2.4.1 was followed 61 s later by latency_p99_ms crossing its threshold. [samples/deploy.txt:3, samples/metric.txt:7]
+- The deploy of v2.4.1 was followed 155 s later by the start of an error burst. [samples/deploy.txt:3, samples/logs.txt:7]
+
+## Resolution
+- The rollback to v2.4.0 was associated with the metric returning below threshold within 23 s. [samples/deploy.txt:4, samples/metric.txt:16]
+```
+
+The Timeline section prints one cited line for every one of the 28 events; the middle is
+elided above only to keep the README short. The full output is what the command prints.
+
+Follow one fact from input to draft. The Summary line `A burst of 5 error log lines ran
+from T+2.6 to T+4.4 min. [samples/logs.txt:7, samples/logs.txt:11]` traces back like
+this: `read_logs` parsed five lines with level `ERROR` (lines 7 to 11 of `logs.txt`),
+each carrying its own provenance. `clockalign` projected them 45 seconds forward onto
+the reference clock. `error_bursts` grouped them into one run of five because each was
+within 60 seconds of the last. `build_draft` bounded the burst by its first and last
+error and cited exactly those two spans. Nothing in that chain was invented; every step
