@@ -90,3 +90,35 @@ Four subcommands, all reading the same three sources plus an alignment config.
 | `draft`    | Write the cited postmortem draft, one grounded claim per line       | 1 if any links   |
 | `version`  | Print the version                                                   | always 0         |
 
+`ingest`, `timeline`, and `draft` all take four required paths: `--logs`, `--metric`,
+`--deploy`, and `--align`. `timeline` and `draft` also accept `--window <seconds>` for
+the correlation window (default 300). Only `timeline` accepts `--svg <path>`.
+
+## The three source kinds and their formats
+
+Each source keeps time on its own clock and is read verbatim, with location. The reader
+records what the file says; it does not correct or infer anything at read time.
+
+| Kind     | Line format                                        | Header                                                              |
+| -------- | -------------------------------------------------- | ------------------------------------------------------------------- |
+| `logs`   | `<iso8601> <LEVEL> <message>`                      | none                                                                |
+| `metric` | `<iso8601> <value>`                                | `# metric <name> unit=<u> threshold=<t> direction=<above\|below>`   |
+| `deploy` | `<iso8601> <deploy\|rollback> ref=<ref>`           | none                                                                |
+
+Rules that hold across all three:
+
+- Timestamps must be ISO8601 UTC, with a trailing `Z` or an explicit `+00:00`. Anything
+  else is rejected with a `SourceError` rather than guessed.
+- Blank lines and lines starting with `#` are skipped (the metric header is the one `#`
+  line that carries meaning).
+- Every event records its provenance: the source path and a 1-based inclusive line span,
+  rendered as `path:line` or `path:start-end`.
+
+The metric reader models a single scalar series with one threshold and one direction. On
+each data point it records the value and whether it breached, so correlation can later
+find the breach window without re-reading the file.
+
+## Clock alignment
+
+Before events from different sources can be compared, they must be projected onto one
+reference clock. Each source clock is modelled as a linear map:
