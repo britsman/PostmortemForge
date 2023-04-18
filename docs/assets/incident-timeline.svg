@@ -11,3 +11,9 @@ v2.4.1 deploy and the v2.4.0 rollback. The metric lane plots fourteen latency sa
 events, sized and coloured by severity, including a burst of five ERROR entries. Dashed connectors
 show the three correlations the tool recorded: deploy to breach, deploy to error burst, and rollback
 to recovery.</desc>
+
+<rect x="0" y="0" width="760" height="352" fill="#ffffff"/>
+
+<text x="96" y="36" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#1f2933">Aligned incident timeline</text>
+<text x="96" y="56" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">minutes from first event, reference clock</text>
+
