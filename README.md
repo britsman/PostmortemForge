@@ -186,3 +186,34 @@ $ python -m postmortemforge ingest --logs samples/logs.txt --metric samples/metr
 2026-03-01T08:03:34Z  metric   samples/metric.txt:12  latency_p99_ms=705ms
 2026-03-01T08:03:50Z  log      samples/logs.txt:10   upstream timeout pool=checkout after=2000ms
 2026-03-01T08:04:04Z  metric   samples/metric.txt:13  latency_p99_ms=660ms
+2026-03-01T08:04:25Z  log      samples/logs.txt:11   circuit open pool=checkout
+2026-03-01T08:04:35Z  metric   samples/metric.txt:14  latency_p99_ms=620ms
+2026-03-01T08:05:06Z  metric   samples/metric.txt:15  latency_p99_ms=540ms
+2026-03-01T08:05:36Z  metric   samples/metric.txt:16  latency_p99_ms=470ms
+2026-03-01T08:06:00Z  deploy   samples/deploy.txt:4  rollback v2.4.0
+2026-03-01T08:06:00Z  log      samples/logs.txt:12   retries elevated pool=checkout
+2026-03-01T08:06:07Z  metric   samples/metric.txt:17  latency_p99_ms=250ms
+2026-03-01T08:06:37Z  metric   samples/metric.txt:18  latency_p99_ms=205ms
+2026-03-01T08:07:05Z  log      samples/logs.txt:13   rollback signal received target=v2.4.0
+2026-03-01T08:07:55Z  log      samples/logs.txt:14   circuit closed pool=checkout
+2026-03-01T08:08:25Z  log      samples/logs.txt:15   request served status=200
+```
+
+Note `samples/metric.txt:15` projecting to `08:05:06Z`, matching the skew calculation
+above.
+
+## Correlation windows and the links found in the sample
+
+With every event on one clock, correlation looks for the structural features of an
+incident and the links between them, using only time proximity within declared windows.
+It detects three kinds of feature:
+
+- deploy actions, taken directly from the deploy source.
+- a metric breach interval: the first and last reference timestamps for which the metric
+  crossed its threshold, treating a gap longer than 120 seconds as ending one interval.
+- log error bursts: runs of ERROR level events no more than 60 seconds apart, with at
+  least three errors in the run.
+
+From those it produces links, each carrying the two events it relates and the gap in
+seconds. A link is only emitted when both endpoints exist and the gap falls within the
+window (default 300 seconds). Anything outside the window is left uncorrelated rather
