@@ -216,3 +216,31 @@ def read_deploy(text: str, path: str) -> list[Event]:
     events: list[Event] = []
     for line_no, line in _iter_lines(text):
         s = line.strip()
+        if not s or s.startswith("#"):
+            continue
+        parts = s.split()
+        if len(parts) < 2:
+            raise SourceError(f"{path}:{line_no}: deploy line needs a timestamp and action")
+        ts = _parse_ts(parts[0], path, line_no)
+        action = parts[1].lower()
+        if action not in ("deploy", "rollback"):
+            raise SourceError(f"{path}:{line_no}: action must be deploy or rollback")
+        ref = ""
+        for tok in parts[2:]:
+            if tok.startswith("ref="):
+                ref = tok[len("ref="):]
+        events.append(
+            Event(
+                raw_ts=ts,
+                kind="deploy",
+                text=f"{action} {ref}".strip(),
+                attrs={"action": action, "ref": ref},
+                prov=Provenance(path, line_no, line_no),
+            )
+        )
+    return events
+
+
+def read_file(path: str) -> str:
+    with open(path, "r", encoding="utf-8", newline="") as fh:
+        return fh.read()
