@@ -59,3 +59,4 @@ def build(events: list[AlignedEvent], window_s: float = 300.0) -> Timeline:
 def iso_utc(ref_ts: float) -> str:
     """Format a reference timestamp as ISO8601 UTC, seconds precision."""
     dt = _dt.datetime.fromtimestamp(ref_ts, tz=_dt.timezone.utc)
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
