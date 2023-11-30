@@ -154,3 +154,35 @@ The skew is not decorative. The test `TestSampleAlignment` projects a real metri
 to prove the accumulated drift. The metric anchor is its first sample at raw `08:01:30`.
 Line 15 of `metric.txt` is stamped raw `08:05:00`, which is 300 seconds after the anchor,
 so the skew adds `0.02 * 300 = 6` seconds:
+
+```
+ref = raw - 90 + 6 = 08:05:00 - 90 + 6 = 08:05:06Z
+```
+
+That projected time, `2026-03-01T08:05:06Z`, is asserted exactly in the test and appears
+verbatim in the `ingest` output below for `samples/metric.txt:15`. At the anchor itself
+only the offset applies, so the first metric sample projects to `08:00:00Z`, and the log
+host's first line (raw `07:59:20`) projects to `08:00:05Z`.
+
+`ingest` reads all three sources and lists every event on the reference clock with its
+source span. This is the captured output from the sample fixtures:
+
+```
+$ python -m postmortemforge ingest --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt
+2026-03-01T08:00:00Z  deploy   samples/deploy.txt:3  deploy v2.4.1
+2026-03-01T08:00:00Z  metric   samples/metric.txt:5  latency_p99_ms=210ms
+2026-03-01T08:00:05Z  log      samples/logs.txt:4    service started build=v2.4.1
+2026-03-01T08:00:30Z  metric   samples/metric.txt:6  latency_p99_ms=235ms
+2026-03-01T08:01:01Z  metric   samples/metric.txt:7  latency_p99_ms=470ms
+2026-03-01T08:01:20Z  log      samples/logs.txt:5    config reloaded
+2026-03-01T08:01:31Z  metric   samples/metric.txt:8  latency_p99_ms=610ms
+2026-03-01T08:02:02Z  metric   samples/metric.txt:9  latency_p99_ms=655ms
+2026-03-01T08:02:05Z  log      samples/logs.txt:6    upstream latency rising pool=checkout
+2026-03-01T08:02:33Z  metric   samples/metric.txt:10  latency_p99_ms=640ms
+2026-03-01T08:02:35Z  log      samples/logs.txt:7    upstream timeout pool=checkout after=2000ms
+2026-03-01T08:02:50Z  log      samples/logs.txt:8    upstream timeout pool=checkout after=2000ms
+2026-03-01T08:03:03Z  metric   samples/metric.txt:11  latency_p99_ms=690ms
+2026-03-01T08:03:20Z  log      samples/logs.txt:9    circuit open pool=checkout
+2026-03-01T08:03:34Z  metric   samples/metric.txt:12  latency_p99_ms=705ms
+2026-03-01T08:03:50Z  log      samples/logs.txt:10   upstream timeout pool=checkout after=2000ms
+2026-03-01T08:04:04Z  metric   samples/metric.txt:13  latency_p99_ms=660ms
