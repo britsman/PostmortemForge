@@ -72,3 +72,14 @@ def merge(*groups: list[AlignedEvent]) -> list[AlignedEvent]:
     """Merge aligned events from several sources into one ordered stream.
 
     Ordering is by reference timestamp, then source name, then line number, so
+    the merged stream is fully deterministic regardless of input order.
+    """
+    merged: list[AlignedEvent] = []
+    for group in groups:
+        merged.extend(group)
+    merged.sort(key=lambda a: (a.ref_ts, a.source, a.event.prov.line_start))
+    return merged
+
+
+def with_anchor(model: ClockModel, anchor_ts: float) -> ClockModel:
+    """Return a copy of the model anchored at anchor_ts."""
