@@ -16,3 +16,6 @@
 <circle cx="152" cy="100" r="6" fill="#0f7d74"/>
 <circle cx="96" cy="128" r="6" fill="#0f7d74"/>
 <circle cx="176" cy="128" r="6" fill="#0f7d74"/>
+</g>
+<text x="120" y="184" text-anchor="middle" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700">
+<tspan fill="#1f2933">postmortem</tspan><tspan fill="#0f7d74">forge</tspan>
