@@ -376,3 +376,35 @@ sample incident has both events and links.
 
 ## Limitations
 
+- Clock models are declared, not inferred. The tool applies the offset and skew you
+  provide; it does not estimate them from the data. A wrong offset produces a confidently
+  wrong timeline.
+- Correlation is proximity within a window, not proof of causation. A link means two
+  events fell close in aligned time, and the draft says exactly that ("was followed 61 s
+  later", "was associated with"). It does not claim one caused the other.
+- The tool drafts, it does not conclude. It surfaces every grounded link and orders the
+  evidence; a human decides which link mattered and writes the conclusion. There is no
+  ranking of causes.
+- Timestamps must be ISO8601 UTC, with a trailing `Z` or an explicit `+00:00`. Other
+  formats are rejected rather than guessed.
+- The metric reader models a single scalar series with one threshold. It does not handle
+  multiple series in one file or percentile families.
+
+## Design decisions
+
+**Provenance is structural, not a convention.** The alternative was to append citations
+by convention: format each sentence, then tack a `[span]` on the end, trusting every code
+path to remember. Conventions rot. The first refactor that adds a summary line without a
+citation ships an ungrounded claim, and nothing catches it. Instead a `Claim` refuses to
+exist without a `Provenance`, so an ungrounded statement is a construction error, not a
+review comment. The cost is that every fact must be threaded with its source events
+through every layer, which is more plumbing; the benefit is that the guarantee holds by
+construction and is checked by the type system and the tests, not by vigilance.
+
+**The draft omits ungrounded statements instead of hedging them.** The tempting
+alternative is to write the narrative a human expects, softened with "likely" or
+"possibly" where the evidence is thin. That reads well and quietly destroys trust,
+because the reader cannot tell a hedged guess from a grounded fact. PostmortemForge draws
+the line at construction: if there is no source span, there is no sentence. A thin section
+says so plainly rather than papering over the gap. A shorter, fully grounded draft is more
+useful in a review than a complete one you have to fact check.
