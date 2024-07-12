@@ -408,3 +408,35 @@ because the reader cannot tell a hedged guess from a grounded fact. PostmortemFo
 the line at construction: if there is no source span, there is no sentence. A thin section
 says so plainly rather than papering over the gap. A shorter, fully grounded draft is more
 useful in a review than a complete one you have to fact check.
+
+**Clocks are declared, not inferred.** Inferring offsets from the data (aligning on a
+shared marker, minimising cross correlation) is a real technique, but it hides an
+assumption inside a computation, and when it is wrong it is wrong invisibly. Declaring the
+offset in `align.txt` keeps the assumption in the open where a reviewer can challenge it,
+and makes the alignment a plain, auditable affine transform.
+
+## Repository layout
+
+```
+postmortemforge/
+  README.md                        this file
+  CHANGELOG.md                     Keep a Changelog history, currently 0.1.0
+  LICENSE                          MIT
+  pyproject.toml                   package metadata, entry point, Python >=3.11
+  .gitignore                       ignores caches and build artifacts
+  docs/
+    assets/
+      incident-timeline.svg        the hero timeline render (sample incident)
+      logo.svg                     the three lane timeline logo mark
+  samples/
+    README.md                      describes the sample incident and its clocks
+    logs.txt                       application log export, host 45s behind
+    metric.txt                     latency_p99_ms series, exporter 90s ahead with skew
+    deploy.txt                     deploy and rollback records, the reference clock
+    align.txt                      per source offset, skew, and anchor config
+  src/
+    postmortemforge/
+      __init__.py                  package version (0.1.0) and docstring
+      __main__.py                  entry for `python -m postmortemforge`
+      cli.py                       argument parsing, config loading, subcommands
+      sources.py                   readers for logs, metric, deploy; Provenance, Event
