@@ -138,3 +138,24 @@ def correlate(events: list[AlignedEvent], window_s: float = 300.0) -> list[Link]
     links: list[Link] = []
 
     deploy_actions = [d for d in deploys if d.event.attrs.get("action") == "deploy"]
+    rollback_actions = [d for d in deploys if d.event.attrs.get("action") == "rollback"]
+
+    for dep in deploy_actions:
+        for interval in intervals:
+            gap = interval.start_ts - dep.ref_ts
+            if 0 <= gap <= window_s:
+                links.append(Link("deploy_to_breach", dep, interval.start_event, gap))
+        for burst in bursts:
+            gap = burst.start_ts - dep.ref_ts
+            if 0 <= gap <= window_s:
+                links.append(Link("deploy_to_burst", dep, burst.start_event, gap))
+
+    for rb in rollback_actions:
+        for interval in intervals:
+            gap = interval.end_ts - rb.ref_ts
+            # The breach interval ends at or after the rollback: recovery.
+            if -window_s <= gap <= window_s:
+                links.append(Link("rollback_to_recovery", rb, interval.end_event, abs(gap)))
+
+    links.sort(key=lambda l: (l.cause.ref_ts, l.relation, l.effect.ref_ts))
+    return links
