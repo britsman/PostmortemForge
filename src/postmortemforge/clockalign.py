@@ -83,3 +83,4 @@ def merge(*groups: list[AlignedEvent]) -> list[AlignedEvent]:
 
 def with_anchor(model: ClockModel, anchor_ts: float) -> ClockModel:
     """Return a copy of the model anchored at anchor_ts."""
+    return replace(model, anchor_ts=anchor_ts)
