@@ -345,3 +345,34 @@ python -m postmortemforge timeline --logs samples/logs.txt --metric samples/metr
 The `draft` output is a contract. Each section is a Markdown `##` heading followed by
 grounded claim lines, and each claim line has this shape:
 
+```
+- <statement text> [<span>, <span>, ...]
+```
+
+| Section              | One line per                                  | Grounded in                                      |
+| -------------------- | --------------------------------------------- | ------------------------------------------------ |
+| `Summary`            | deploy, rollback, breach extent, burst extent | the deploy events and the bounding samples       |
+| `Timeline`           | every event (28 in the sample)                | that single event's provenance                   |
+| `Contributing cause` | each `deploy_to_breach` / `deploy_to_burst`   | both endpoints of the link                        |
+| `Resolution`         | each `rollback_to_recovery`                    | both endpoints of the link                        |
+
+A span is `path:line` for a single line, or `path:start-end` for a range. Multiple spans
+are comma separated inside one pair of brackets. The draft is line oriented so it diffs
+cleanly, and deterministic so identical input produces byte identical output; that
+determinism is asserted by `test_draft_is_byte_identical_across_runs`.
+
+## Exit codes
+
+| Code | Meaning                                                                        |
+| ---- | ------------------------------------------------------------------------------ |
+| 0    | Clean: no findings (`ingest` with zero events, or `timeline`/`draft` with no links), or `version` |
+| 1    | Findings present: `ingest` produced events, or `timeline`/`draft` found links  |
+| 2    | Usage error: a bad path, an unparseable source, or an invalid argument         |
+
+In CI, treat exit 1 as "an incident was reconstructed" rather than as failure. A missing
+input file or a malformed timestamp surfaces as exit 2 with an `error:` line on stderr,
+which is the code to gate a pipeline on. The sample commands above all exit 1 because the
+sample incident has both events and links.
+
+## Limitations
+
