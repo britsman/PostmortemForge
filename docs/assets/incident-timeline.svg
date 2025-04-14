@@ -17,3 +17,9 @@ to recovery.</desc>
 <text x="96" y="36" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#1f2933">Aligned incident timeline</text>
 <text x="96" y="56" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">minutes from first event, reference clock</text>
 
+<!-- lanes -->
+<rect x="96" y="72" width="640" height="64" rx="3" fill="#eef2f5"/>
+<text x="84" y="108" text-anchor="end" font-family="&quot;Cascadia Mono&quot;, &quot;JetBrains Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="12" fill="#1f2933">deploy</text>
+<rect x="96" y="144" width="640" height="64" rx="3" fill="#eef2f5"/>
+<text x="84" y="180" text-anchor="end" font-family="&quot;Cascadia Mono&quot;, &quot;JetBrains Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="12" fill="#1f2933">metric</text>
+<rect x="96" y="216" width="640" height="64" rx="3" fill="#eef2f5"/>
