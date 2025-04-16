@@ -217,3 +217,35 @@ It detects three kinds of feature:
 From those it produces links, each carrying the two events it relates and the gap in
 seconds. A link is only emitted when both endpoints exist and the gap falls within the
 window (default 300 seconds). Anything outside the window is left uncorrelated rather
+than guessed.
+
+`timeline` builds the correlated timeline and prints events plus the links it found.
+Captured output, links section shown in full:
+
+```
+$ python -m postmortemforge timeline --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt
+EVENTS
+  T+   0.0m  deploy   samples/deploy.txt:3  deploy v2.4.1
+  T+   0.0m  metric   samples/metric.txt:5  latency_p99_ms=210ms
+  T+   0.1m  log      samples/logs.txt:4    service started build=v2.4.1
+  ... (28 events in full; middle elided here only for length)
+  T+   8.4m  log      samples/logs.txt:15   request served status=200
+LINKS
+  deploy_to_breach        T+0.0m -> T+1.0m  gap=61s  [samples/deploy.txt:3 -> samples/metric.txt:7]
+  deploy_to_burst         T+0.0m -> T+2.6m  gap=155s  [samples/deploy.txt:3 -> samples/logs.txt:7]
+  rollback_to_recovery    T+6.0m -> T+5.6m  gap=23s  [samples/deploy.txt:4 -> samples/metric.txt:16]
+```
+
+The three links, with the real gaps the tool measured:
+
+| Relation               | From                | To                   | Gap   | What it means                                                     |
+| ---------------------- | ------------------- | -------------------- | ----- | ----------------------------------------------------------------- |
+| `deploy_to_breach`     | deploy v2.4.1       | first breach sample  | 61s   | The metric crossed 400ms 61s after the deploy.                    |
+| `deploy_to_burst`      | deploy v2.4.1       | first ERROR log      | 155s  | The error burst began 155s after the deploy.                      |
+| `rollback_to_recovery` | rollback v2.4.0     | last breach sample   | 23s   | The metric dropped below threshold within 23s of the rollback.    |
+
+The `rollback_to_recovery` arrow points backward in minutes (`T+6.0m -> T+5.6m`) because
+the last breached sample is at T+5.6, just before the rollback at T+6.0; the gap is the
+absolute distance, 23 seconds. The correlator allows the recovery endpoint to fall
+either side of the rollback within the window, which is why a breach ending slightly
+before the rollback still counts as the recovery it enabled.
