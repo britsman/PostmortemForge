@@ -122,3 +122,35 @@ find the breach window without re-reading the file.
 
 Before events from different sources can be compared, they must be projected onto one
 reference clock. Each source clock is modelled as a linear map:
+
+```
+reference_ts = raw_ts + offset + skew * (raw_ts - anchor)
+```
+
+- `offset` is a constant shift in seconds: the source clock is ahead or behind.
+- `skew` is a rate error in seconds per second: the source clock runs fast or slow. It
+  multiplies the elapsed time since a per source `anchor`, so a small rate error
+  accumulates over the window instead of applying uniformly.
+- `anchor` is the raw timestamp at which the source was last known to agree with the
+  reference. Anchoring keeps the correction numerically small and makes the offset the
+  pure shift at the anchor instant. `anchor=first` anchors at the source's own earliest
+  raw sample.
+
+The maps are declared, not inferred. PostmortemForge applies the offsets an operator
+provides (from NTP records, a known deploy marker, and so on); it does not estimate them
+from the data. The sample `align.txt` declares:
+
+```
+deploy offset=0 skew=0 anchor=first
+log offset=45 skew=0 anchor=first
+metric offset=-90 skew=0.02 anchor=first
+```
+
+So in the sample the deploy record is the reference, the log host runs 45 seconds behind
+(add 45), and the metric exporter runs 90 seconds ahead (subtract 90) while drifting fast
+at 0.02 seconds per second, anchored at its first sample.
+
+The skew is not decorative. The test `TestSampleAlignment` projects a real metric sample
+to prove the accumulated drift. The metric anchor is its first sample at raw `08:01:30`.
+Line 15 of `metric.txt` is stamped raw `08:05:00`, which is 300 seconds after the anchor,
+so the skew adds `0.02 * 300 = 6` seconds:
