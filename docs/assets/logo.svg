@@ -8,3 +8,6 @@
 <rect x="0" y="0" width="240" height="240" fill="#ffffff"/>
 <!-- Mark: three source lanes, each a rule with event dots. One amber deploy dot. -->
 <g>
+<line x1="40" y1="72" x2="200" y2="72" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="40" y1="100" x2="200" y2="100" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="40" y1="128" x2="200" y2="128" stroke="#1f2933" stroke-width="1.5"/>
