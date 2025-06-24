@@ -77,3 +77,9 @@ to recovery.</desc>
 <circle cx="311.5" cy="248" r="4.5" fill="#b06a00"/>
 <circle cx="349.5" cy="248" r="4.5" fill="#b06a00"/>
 <circle cx="387.5" cy="248" r="4.5" fill="#b06a00"/>
+<circle cx="432" cy="248" r="4.5" fill="#b06a00"/>
+<circle cx="552" cy="248" r="4" fill="#ffffff" stroke="#0f7d74" stroke-width="1.5"/>
+<circle cx="634.5" cy="248" r="2.5" fill="#0f7d74"/>
+<circle cx="698" cy="248" r="2.5" fill="#0f7d74"/>
+<circle cx="736" cy="248" r="2.5" fill="#0f7d74"/>
+<text x="362" y="236" text-anchor="middle" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1f2933">5 ERROR</text>
