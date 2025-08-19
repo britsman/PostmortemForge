@@ -158,3 +158,25 @@ def build_draft(timeline: Timeline) -> Draft:
                     text=(
                         f"The deploy of {ref} was followed {gap:0.0f} s later by "
                         f"the start of an error burst."
+                    ),
+                    sources=_prov(link.cause, link.effect),
+                )
+            )
+        elif link.relation == "rollback_to_recovery":
+            ref = link.cause.event.attrs.get("ref", "")
+            resolution_claims.append(
+                Claim(
+                    text=(
+                        f"The rollback to {ref} was associated with the metric "
+                        f"returning below threshold within {gap:0.0f} s."
+                    ),
+                    sources=_prov(link.cause, link.effect),
+                )
+            )
+
+    sections = (
+        ("Summary", tuple(summary)),
+        ("Timeline", tuple(timeline_claims)),
+        ("Contributing cause", tuple(cause_claims)),
+        ("Resolution", tuple(resolution_claims)),
+    )
