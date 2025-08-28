@@ -194,3 +194,30 @@ def render_svg(timeline: Timeline) -> str:
 
 
 def _tick_step(span_m: float) -> float:
+    if span_m <= 6:
+        return 1.0
+    if span_m <= 15:
+        return 2.0
+    if span_m <= 40:
+        return 5.0
+    return 10.0
+
+
+def _short_label(ae: AlignedEvent) -> str:
+    if ae.source == "deploy":
+        return ae.event.text
+    if ae.source == "metric":
+        v = ae.event.attrs.get("value")
+        unit = ae.event.attrs.get("unit", "")
+        return f"{v:g}{unit}"
+    level = ae.event.attrs.get("level", "")
+    return level
+
+
+def _label_placement(x: float, left: float, plot_w: float) -> tuple[str, float]:
+    # Keep labels inside the plot, away from the viewBox edge.
+    if x > left + plot_w - 48:
+        return "end", -6.0
+    if x < left + 24:
+        return "start", 6.0
+    return "middle", 0.0
