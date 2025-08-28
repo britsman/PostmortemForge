@@ -180,3 +180,4 @@ def build_draft(timeline: Timeline) -> Draft:
         ("Contributing cause", tuple(cause_claims)),
         ("Resolution", tuple(resolution_claims)),
     )
+    return Draft(title="Incident postmortem draft", sections=sections)
