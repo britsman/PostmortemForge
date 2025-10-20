@@ -313,3 +313,35 @@ each carrying its own provenance. `clockalign` projected them 45 seconds forward
 the reference clock. `error_bursts` grouped them into one run of five because each was
 within 60 seconds of the last. `build_draft` bounded the burst by its first and last
 error and cited exactly those two spans. Nothing in that chain was invented; every step
+either read a file or applied the declared offset.
+
+## Reading the timeline asset
+
+The hero image at the top of this page is the `timeline --svg` render of the sample
+incident. It is worth reading closely, because colour and size carry meaning rather than
+decoration. It shows:
+
+- Three lanes on a shared minute axis measured from the first event: deploy on top,
+  metric in the middle, logs at the foot.
+- The metric lane plots fourteen latency samples as a line from 210ms up to a labelled
+  peak of 705ms and back down to 205ms.
+- Amber marks the incident itself: the v2.4.1 deploy dot, every latency sample at or
+  above the 470ms breach onset, and the five ERROR log events.
+- Teal marks healthy signal, with hollow teal rings for the WARN log lines and the
+  rollback.
+- Three dashed connectors trace the recorded correlations: deploy to first breach,
+  deploy to error burst start, and rollback to recovery.
+- A legend at the foot names each mark: INFO, WARN or rollback, and ERROR with latency
+  at or above the 470ms breach onset.
+
+Regenerate it at any time with:
+
+```
+python -m postmortemforge timeline --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt --svg docs/assets/incident-timeline.svg
+```
+
+## Output format
+
+The `draft` output is a contract. Each section is a Markdown `##` heading followed by
+grounded claim lines, and each claim line has this shape:
+
