@@ -499,6 +499,23 @@ Directions under consideration, without dates:
   keeping the declared config as the source of truth.
 - Ranking or grouping of links when an incident produces many, without claiming causation.
 
+## Contributing
+
+Issues and pull requests are welcome. When you report a bug, include the exact
+evidence files (logs, metric, deploy, and the alignment config) or a minimised
+version that still reproduces the finding, plus the `--window` value you used.
+The test suite is plain `unittest` and runs without any third party
+dependencies:
+
+```
+python -m unittest discover -s tests -v
+```
+
+Please keep changes standard library only and add a test alongside any new
+behaviour, matching the existing style in `tests/test_postmortemforge.py`.
+Security concerns should be reported privately instead of in a public issue;
+see the repository security policy for the contact channel.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
