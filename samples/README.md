@@ -35,3 +35,16 @@ accumulated skew on a metric sample 300 seconds past the anchor.
 - metric: a `# metric <name> unit=<u> threshold=<t> direction=<above|below>`
   header, then `<iso8601> <value>` per line
 - deploy: `<iso8601> <deploy|rollback> ref=<ref>`
+## Regenerating the expected output
+
+The numbers quoted in the top level README (breach start and end, link
+counts, draft claims) are produced by running the CLI against these files.
+To regenerate them after a change, run:
+
+```
+python -m postmortemforge draft --logs samples/logs.txt --metric samples/metric.txt --deploy samples/deploy.txt --align samples/align.txt
+```
+
+The test suite asserts the same alignment and correlation results, so if a
+deliberate format change lands, regenerate the fixtures first and update the
+README numbers from the actual output rather than inventing them.
