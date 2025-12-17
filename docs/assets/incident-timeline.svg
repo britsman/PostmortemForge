@@ -71,3 +71,9 @@ to recovery.</desc>
 
 <!-- logs lane: 12 real events, mark size and colour encode severity -->
 <circle cx="102.5" cy="248" r="2.5" fill="#0f7d74"/>
+<circle cx="197.5" cy="248" r="2.5" fill="#0f7d74"/>
+<circle cx="254.5" cy="248" r="4" fill="#ffffff" stroke="#0f7d74" stroke-width="1.5"/>
+<circle cx="292.5" cy="248" r="4.5" fill="#b06a00"/>
+<circle cx="311.5" cy="248" r="4.5" fill="#b06a00"/>
+<circle cx="349.5" cy="248" r="4.5" fill="#b06a00"/>
+<circle cx="387.5" cy="248" r="4.5" fill="#b06a00"/>
