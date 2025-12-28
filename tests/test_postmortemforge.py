@@ -239,3 +239,36 @@ class TestCli(unittest.TestCase):
 
     def _args(self, *extra):
         return [
+            "--logs", _sample("logs.txt"),
+            "--metric", _sample("metric.txt"),
+            "--deploy", _sample("deploy.txt"),
+            "--align", _sample("align.txt"),
+            *extra,
+        ]
+
+    def test_version(self):
+        from postmortemforge.cli import main
+        self.assertEqual(main(["version"]), 0)
+
+    def test_ingest_returns_findings(self):
+        from postmortemforge.cli import main
+        self.assertEqual(main(["ingest", *self._args()]), 1)
+
+    def test_draft_returns_findings(self):
+        from postmortemforge.cli import main
+        self.assertEqual(main(["draft", *self._args()]), 1)
+
+    def test_usage_error_on_missing_file(self):
+        from postmortemforge.cli import main
+        code = main([
+            "ingest",
+            "--logs", _sample("nope.txt"),
+            "--metric", _sample("metric.txt"),
+            "--deploy", _sample("deploy.txt"),
+            "--align", _sample("align.txt"),
+        ])
+        self.assertEqual(code, 2)
+
+
+if __name__ == "__main__":
+    unittest.main()
