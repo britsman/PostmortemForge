@@ -17,3 +17,8 @@ postmortemforge = "postmortemforge.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+# draft note 3
