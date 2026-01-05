@@ -28,3 +28,12 @@ projects onto the reference clock:
 The offsets are deliberate so the alignment code is genuinely required. The test
 `TestSampleAlignment` asserts the projected reference times, including the
 accumulated skew on a metric sample 300 seconds past the anchor.
+
+## Formats
+
+- logs: `<iso8601> <LEVEL> <message>`
+- metric: a `# metric <name> unit=<u> threshold=<t> direction=<above|below>`
+  header, then `<iso8601> <value>` per line
+- deploy: `<iso8601> <deploy|rollback> ref=<ref>`
+
+# draft note 4
