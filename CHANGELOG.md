@@ -86,3 +86,13 @@ Keep a Changelog, and this project adheres to semantic versioning.
   and the requirement that every generated statement stays grounded in a
   source span.
 - First file format sketch for logs and a fixture that exercises it.
+
+## [0.0.1] - 2020-04-22
+
+### Added
+
+- Initial project scaffold: package skeleton, `pyproject.toml`, README, and
+  the MIT licence.
+- The problem statement and the first sample fixture modelling a deploy, a
+  latency metric breach, and a burst of error log lines.
+# draft note 1
