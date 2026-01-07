@@ -10,3 +10,17 @@
 <g>
 <line x1="40" y1="72" x2="200" y2="72" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="40" y1="100" x2="200" y2="100" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="40" y1="128" x2="200" y2="128" stroke="#1f2933" stroke-width="1.5"/>
+<circle cx="64" cy="72" r="7" fill="#b06a00"/>
+<circle cx="112" cy="100" r="6" fill="#0f7d74"/>
+<circle cx="152" cy="100" r="6" fill="#0f7d74"/>
+<circle cx="96" cy="128" r="6" fill="#0f7d74"/>
+<circle cx="176" cy="128" r="6" fill="#0f7d74"/>
+</g>
+<text x="120" y="184" text-anchor="middle" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700">
+<tspan fill="#1f2933">postmortem</tspan><tspan fill="#0f7d74">forge</tspan>
+</text>
+<text x="120" y="208" text-anchor="middle" font-family="&quot;Cascadia Mono&quot;, &quot;JetBrains Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="12" fill="#52606d">cited incident timelines</text>
+</svg>
+
+# draft note 10
