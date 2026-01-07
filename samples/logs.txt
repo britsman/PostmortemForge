@@ -10,3 +10,8 @@
 2026-03-01T08:03:05Z ERROR upstream timeout pool=checkout after=2000ms
 2026-03-01T08:03:40Z ERROR circuit open pool=checkout
 2026-03-01T08:05:15Z WARN retries elevated pool=checkout
+2026-03-01T08:06:20Z INFO rollback signal received target=v2.4.0
+2026-03-01T08:07:10Z INFO circuit closed pool=checkout
+2026-03-01T08:07:40Z INFO request served status=200
+
+# draft note 7
