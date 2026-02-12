@@ -95,4 +95,4 @@ Keep a Changelog, and this project adheres to semantic versioning.
   the MIT licence.
 - The problem statement and the first sample fixture modelling a deploy, a
   latency metric breach, and a burst of error log lines.
-# draft note 41
+# draft note 51
