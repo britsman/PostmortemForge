@@ -36,4 +36,4 @@ accumulated skew on a metric sample 300 seconds past the anchor.
   header, then `<iso8601> <value>` per line
 - deploy: `<iso8601> <deploy|rollback> ref=<ref>`
 
-# draft note 104
+# draft note 114
