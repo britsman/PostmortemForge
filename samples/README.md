@@ -35,5 +35,3 @@ accumulated skew on a metric sample 300 seconds past the anchor.
 - metric: a `# metric <name> unit=<u> threshold=<t> direction=<above|below>`
   header, then `<iso8601> <value>` per line
 - deploy: `<iso8601> <deploy|rollback> ref=<ref>`
-
-# draft note 24
