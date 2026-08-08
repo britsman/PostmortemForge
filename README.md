@@ -502,5 +502,3 @@ Directions under consideration, without dates:
 ## License
 
 MIT. See [LICENSE](LICENSE).
-
-# draft note 72
