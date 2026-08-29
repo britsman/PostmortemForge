@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Crashes or injection via crafted log lines
+    url: https://github.com/britsman/PostmortemForge/blob/main/.github/SECURITY.md
+    about: Parser/input-handling vulnerabilities go through the security policy, not a public issue.
