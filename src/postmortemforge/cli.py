@@ -111,7 +111,13 @@ def _add_source_args(p: argparse.ArgumentParser) -> None:
 
 def _cmd_ingest(args) -> int:
     aligned = _load(args)
-    sys.stdout.write(render_ingest(aligned))
+    text = render_ingest(aligned)
+    if args.out:
+        with open(args.out, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(text)
+        sys.stdout.write(f"wrote {args.out}\n")
+    else:
+        sys.stdout.write(text)
     return FINDINGS if aligned else CLEAN
 
 
@@ -122,6 +128,10 @@ def _cmd_timeline(args) -> int:
         with open(args.svg, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(render_svg(tl))
         sys.stdout.write(f"wrote {args.svg}\n")
+    elif args.out:
+        with open(args.out, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(render_timeline(tl))
+        sys.stdout.write(f"wrote {args.out}\n")
     else:
         sys.stdout.write(render_timeline(tl))
     return FINDINGS if tl.links else CLEAN
@@ -149,12 +159,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_ingest = sub.add_parser("ingest", help="list aligned events with source spans")
     _add_source_args(p_ingest)
+    p_ingest.add_argument("--out", help="write the aligned event list to this path instead of stdout")
     p_ingest.set_defaults(func=_cmd_ingest)
 
     p_timeline = sub.add_parser("timeline", help="build the correlated timeline")
     _add_source_args(p_timeline)
     p_timeline.add_argument("--window", type=float, default=300.0, help="correlation window in seconds")
     p_timeline.add_argument("--svg", help="write the timeline SVG to this path instead of text")
+    p_timeline.add_argument("--out", help="write the timeline text to this path instead of stdout")
     p_timeline.set_defaults(func=_cmd_timeline)
 
     p_draft = sub.add_parser("draft", help="write the cited postmortem draft")
