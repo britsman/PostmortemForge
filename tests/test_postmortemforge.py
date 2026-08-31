@@ -254,6 +254,26 @@ class TestCli(unittest.TestCase):
         from postmortemforge.cli import main
         self.assertEqual(main(["ingest", *self._args()]), 1)
 
+    def test_ingest_out_writes_file(self):
+        import tempfile
+        from pathlib import Path
+        from postmortemforge.cli import main
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "aligned.txt"
+            self.assertEqual(main(["ingest", *self._args(), "--out", str(out)]), 1)
+            self.assertTrue(out.exists())
+            self.assertIn("deploy", out.read_text(encoding="utf-8"))
+
+    def test_timeline_out_writes_file(self):
+        import tempfile
+        from pathlib import Path
+        from postmortemforge.cli import main
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "timeline.txt"
+            self.assertEqual(main(["timeline", *self._args(), "--out", str(out)]), 1)
+            self.assertTrue(out.exists())
+            self.assertIn("T+", out.read_text(encoding="utf-8"))
+
     def test_draft_returns_findings(self):
         from postmortemforge.cli import main
         self.assertEqual(main(["draft", *self._args()]), 1)
